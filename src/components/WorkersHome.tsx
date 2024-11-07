@@ -28,9 +28,9 @@ function WorkersHome() {
   });
   const handleCursorMove = (e: React.MouseEvent) => {
     let rect = e.currentTarget.getBoundingClientRect();
-    let x = e.clientX - rect.left;
-    let y = e.clientY - rect.top;
-    console.log(x, y);
+    let x = Math.floor(e.clientX - rect.left);
+    let y = Math.floor(e.clientY - rect.top);
+    console.log(`worker move`, x, y);
     if (
       cursorState.lastUpdated &&
       Date.now() - cursorState.lastUpdated < THROTTLE_SECS
@@ -45,7 +45,7 @@ function WorkersHome() {
     });
 
     space.cursors.set({
-      position: { x: e.clientX, y: e.clientY },
+      position: { x: x, y: y },
       data: { meta: "test-1" },
     });
   };
@@ -54,8 +54,10 @@ function WorkersHome() {
 
   return (
     <>
-      <div style={{ height: "100vh", width: "100vw" }}>
-        <div className="cursor-box" onMouseMove={handleCursorMove}></div>
+      <div className="worker-box">
+        <div style={{ height: "100vh", width: "100vw" }}>
+          <div className="cursor-box" onMouseMove={handleCursorMove}></div>
+        </div>
       </div>
     </>
   );

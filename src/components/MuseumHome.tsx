@@ -6,6 +6,8 @@ import "../museum.css";
 import { useCursors } from "@ably/spaces/dist/mjs/react";
 import CursorSvg from "./Cursor";
 import { motion } from "framer-motion";
+import HomeUI from "./HomeUI";
+import HomeContent from "./HomeContent";
 
 const client = new Realtime({
   clientId: nanoid(),
@@ -41,20 +43,25 @@ function MuseumHome() {
 
   return (
     <>
-      <div>
-        <h1>Musuem Home</h1>
-        <div className="cursor-box" style={{ position: "relative" }}>
+      <div className="home-container">
+        {/* <div
+          className="cursor-box cursor-box-mus"
+          style={{ position: "relative" }}
+        >
           <motion.div
-            className="cusor-mover"
+            className="cursor-mover"
             style={{
               position: "absolute",
               top: cPos.y,
               left: cPos.x,
+              transformOrigin: "top left",
             }}
           >
             <CursorSvg />
           </motion.div>
-        </div>
+        </div> */}
+        <HomeUI />
+        <HomeContent />
       </div>
     </>
   );

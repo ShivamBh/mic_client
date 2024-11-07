@@ -1,0 +1,46 @@
+.ui-container {
+  position: fixed;
+  width: calc(100vw - 32px);
+  height: calc(100% - 32px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  pointer-events: none;
+}
+
+.ui-header,
+.ui-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ui-window {
+  height: 400px;
+  width: 400px;
+  border: 2px solid black;
+  background-color: white;
+}
+
+.cursor-window {
+  width: 100%;
+  height: 100%;
+}
+
+.header-text {
+  background-color: white;
+  margin: 0;
+  font-size: 20px;
+  padding: 12px 64px;
+  border: 2px solid black;
+  font-weight: 400;
+}
+
+.worker-stats {
+  background-color: white;
+  margin: 0;
+  font-size: 20px;
+  padding: 12px 40px;
+  border: 2px solid black;
+}

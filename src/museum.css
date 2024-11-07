@@ -1,7 +1,26 @@
-.cursor-box {
-  height: 400px;
-  width: 400px;
+.home-container {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  padding: 16px;
+  position: relative;
+  overflow-x: hidden;
+}
 
-  margin-top: 40px;
-  border: 2px solid red;
+.mus-box {
+  width: 100vw;
+  position: relative;
+}
+
+.cursor-box-mus {
+  width: 404px;
+  height: 404px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  border: 1px solid red;
+}
+
+.cursor-box-mus {
 }
