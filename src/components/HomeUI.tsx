@@ -6,6 +6,7 @@ import "../styles/ui.css";
 import { Realtime } from "ably";
 import { nanoid } from "nanoid";
 import Spaces from "@ably/spaces";
+import PictureBox from "./PictureBox";
 
 const viewerMemberId = nanoid();
 
@@ -24,18 +25,13 @@ function HomeUI() {
     const space = await spaces.get("resting-area");
 
     space.subscribe("update", (spaceState) => {
-      console.log(`viewer`, viewerMemberId);
-      console.log(`Space state`, spaceState);
-      console.log(`members`, spaceState.members);
-      setWorkerCount(spaceState.members.length);
+      const connected = spaceState.members.filter(
+        (member) => member.isConnected
+      );
+      setWorkerCount(connected.length);
     });
 
     space.cursors.subscribe("update", (cursorUpdate) => {
-      console.log(
-        `cursorUpdate:`,
-        cursorUpdate.position.x,
-        cursorUpdate.position.y
-      );
       setCpos({
         x: cursorUpdate.position.x,
         y: cursorUpdate.position.y,
@@ -54,19 +50,23 @@ function HomeUI() {
           <h1 className="header-text">MICROREST</h1>
         </div>
         <div className="ui-window">
-          <div className="cursor-box">
-            <motion.div
-              className="cursor-mover"
-              style={{
-                position: "absolute",
-                top: cPos.y,
-                left: cPos.x,
-                transformOrigin: "top left",
-              }}
-            >
-              <CursorSvg />
-            </motion.div>
-          </div>
+          {workerCount > 0 ? (
+            <div className="cursor-box">
+              <motion.div
+                className="cursor-mover"
+                style={{
+                  position: "absolute",
+                  top: cPos.y,
+                  left: cPos.x,
+                  transformOrigin: "top left",
+                }}
+              >
+                <CursorSvg />
+              </motion.div>
+            </div>
+          ) : (
+            <PictureBox />
+          )}
         </div>
         <div className="ui-footer">
           <p className="worker-stats">
