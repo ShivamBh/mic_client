@@ -6,21 +6,3 @@
   position: relative;
   overflow-x: hidden;
 }
-
-.mus-box {
-  width: 100vw;
-  position: relative;
-}
-
-.cursor-box-mus {
-  width: 404px;
-  height: 404px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  border: 1px solid red;
-}
-
-.cursor-box-mus {
-}

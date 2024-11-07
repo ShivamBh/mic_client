@@ -18,7 +18,7 @@ const THROTTLE_SECS = 150;
 
 const spaces = new Spaces(client);
 const space = await spaces.get("resting-area");
-await space.enter({ name: "worker-1" });
+await space.enter({ name: "worker-2" });
 
 function WorkersHome() {
   const [cursorState, setCursorState] = useState({
