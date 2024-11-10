@@ -73,7 +73,7 @@ function HomeContent() {
         <p className="content-block">
           So far a total of {restData.count} workers have rested for{" "}
           {convertSeconds(restData.duration)}. To support the project, please{" "}
-          <Link to={"/donate"}>donate</Link>.
+          <Link to={"#"}>donate</Link>.
         </p>
       </div>
     </>
