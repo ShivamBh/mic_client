@@ -7,6 +7,7 @@ import { Realtime } from "ably";
 import { nanoid } from "nanoid";
 import Spaces from "@ably/spaces";
 import PictureBox from "./PictureBox";
+import supabase from "../utils/supabase";
 
 const viewerMemberId = nanoid();
 
@@ -41,7 +42,11 @@ function HomeUI() {
 
   useEffect(() => {
     initSpace();
-  });
+  }, []);
+
+  useEffect(() => {
+    console.log(cPos);
+  }, [cPos]);
 
   return (
     <>

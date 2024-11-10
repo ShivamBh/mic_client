@@ -1,6 +1,40 @@
+import { Link } from "react-router-dom";
 import "../styles/content.css";
+import { useCallback, useEffect, useState } from "react";
+import supabase from "../utils/supabase";
+import convertSeconds from "../utils/time-format";
 
 function HomeContent() {
+  const [restData, setRestData] = useState({
+    count: 0,
+    duration: 0,
+  });
+
+  const fetchRestData = useCallback(async () => {
+    const count = await supabase
+      .from("completed_rests")
+      .select("*", { count: "exact", head: true });
+    const totalRest = await supabase
+      .from("completed_rests")
+      .select("task_duration_in_secs.sum()");
+
+    if (!totalRest || !totalRest.data) {
+      return;
+    }
+
+    const totalDuration = totalRest.data[0].sum as number;
+    const numWorkers = count.count as number;
+
+    setRestData({
+      count: numWorkers,
+      duration: totalDuration,
+    });
+  }, []);
+
+  useEffect(() => {
+    fetchRestData();
+  }, []);
+
   return (
     <>
       <div className="home-content">
@@ -37,8 +71,9 @@ function HomeContent() {
           paused, the AI training stops.
         </p>
         <p className="content-block">
-          So far a total of 28 workers have rested for 17 hours 5 minutes and 3
-          seconds. To support the project, please donate.
+          So far a total of {restData.count} workers have rested for{" "}
+          {convertSeconds(restData.duration)}. To support the project, please{" "}
+          <Link to={"/donate"}>donate</Link>.
         </p>
       </div>
     </>
