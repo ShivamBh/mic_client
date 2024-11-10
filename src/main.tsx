@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     Component: MuseumHome,
   },
   {
-    path: "/donate",
+    path: "/donate-temp",
     Component: DonatePage,
   },
 ]);
