@@ -1,7 +1,8 @@
-.cursor-box {
-  height: 400px;
-  width: 400px;
-
-  margin-top: 40px;
-  border: 2px solid red;
+.home-container {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  padding: 16px;
+  position: relative;
+  overflow-x: hidden;
 }

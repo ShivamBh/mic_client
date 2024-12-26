@@ -4,6 +4,7 @@ import "./index.css";
 // import App from "./App.tsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MuseumHome from "./components/MuseumHome.tsx";
+// import WorkersHome from "./components/WorkersHome.tsx";
 import { Realtime } from "ably";
 import { nanoid } from "nanoid";
 import Spaces from "@ably/spaces";
