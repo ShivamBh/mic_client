@@ -32,6 +32,7 @@ const CheckoutForm = () => {
     )
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setClientSecret(data.clientSecret);
       });
   };
@@ -95,7 +96,7 @@ const CheckoutForm = () => {
   }, [amount]);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="checkout-form">
       <div className="checkout-header">
         <h1>
           Thank you for supporting our project to slow down AI. To donate any
@@ -103,8 +104,22 @@ const CheckoutForm = () => {
         </h1>
       </div>
       <div className="checkout-wrapper">
+        <div className="donation-input-mobile">
+          <p>Please enter donation amount</p>
+          <div className="donation-amount-mobile">
+            <input
+              type="number"
+              placeholder="amount"
+              step={1}
+              min={2}
+              className="donation-input"
+              onChange={(e) => setAmount(Number(e.target.value))}
+            />
+          </div>
+        </div>
+
         <div className="address-wrapper">
-          <div className="subheading">Billing information</div>
+          <div className="subheading subhead-mobile">Billing information</div>
           <AddressElement
             options={{
               mode: "billing",
@@ -133,6 +148,7 @@ const CheckoutForm = () => {
               type="number"
               placeholder="amount"
               step={1}
+              min={2}
               className="donation-input"
               onChange={(e) => setAmount(Number(e.target.value))}
             />
@@ -147,6 +163,15 @@ const CheckoutForm = () => {
       </div>
 
       <div className="submit-wrapper">
+        <button
+          className="payment-submit-mobile"
+          type="submit"
+          disabled={!stripe || loading}
+        >
+          {" "}
+          Pay {amount ? `$${amount}` : ""}
+        </button>
+
         <button
           className="payment-submit"
           type="submit"

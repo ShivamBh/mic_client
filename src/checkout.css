@@ -37,7 +37,8 @@
   width: calc(33.33% - 24px);
 }
 
-.donation-wrapper {
+.donation-input-mobile {
+  display: none;
 }
 
 .donation-amount {
@@ -78,6 +79,16 @@
   margin: 0;
 }
 
+.payment-submit-mobile {
+  display: none;
+  width: calc(90% - 24px);
+  margin-top: 40px;
+  padding: 12px 40px;
+  border: 2px solid black;
+  border-radius: 0px;
+  font-size: 16px;
+}
+
 .payment-submit {
   display: block;
   width: calc(33.333% - 24px);
@@ -98,4 +109,61 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+@media (max-width: 768px) {
+  .checkout-form {
+    padding-bottom: 40px;
+  }
+
+  .checkout-header {
+    width: calc(90% - 24px);
+  }
+
+  .checkout-header > h1 {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+
+  .checkout-wrapper {
+    flex-direction: column;
+  }
+
+  .checkout-wrapper > div {
+    width: 100%;
+  }
+
+  .subheading {
+    display: none;
+  }
+
+  .subhead-mobile {
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .donation-total {
+    display: none;
+  }
+
+  .donation-input-mobile {
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .donation-amount {
+    display: none;
+  }
+
+  .donation-input-mobile > p {
+    margin: 0;
+  }
+
+  .payment-submit {
+    display: none;
+  }
+
+  .payment-submit-mobile {
+    display: block;
+  }
 }
