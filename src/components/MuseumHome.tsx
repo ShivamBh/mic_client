@@ -42,7 +42,7 @@ function MuseumHome() {
   return (
     <>
       <div>
-        <h1>Musuem Home</h1>
+        <h1>Display Home</h1>
         <div className="cursor-box" style={{ position: "relative" }}>
           <motion.div
             className="cusor-mover"

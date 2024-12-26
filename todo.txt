@@ -1,0 +1,20 @@
+Stripe integration front end
+stripe integration backend (payment-intents)
+stripe success-page
+stripe errors
+
+Stripe webhooks
+Send custom email on success
+
+worker image animations
+Worker timer
+worker success-code
+worker success and duration saved to supabase
+
+
+admin dashboard
+list workers, sort_by: desc
+workers -> show payout status
+update workers with successfull payouts
+
+worker-mus -> mouse movement sync position

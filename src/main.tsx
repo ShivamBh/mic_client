@@ -4,12 +4,13 @@ import "./index.css";
 // import App from "./App.tsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MuseumHome from "./components/MuseumHome.tsx";
-import WorkersHome from "./components/WorkersHome.tsx";
 import { Realtime } from "ably";
 import { nanoid } from "nanoid";
 import Spaces from "@ably/spaces";
 import { AblyProvider } from "ably/react";
 import App from "./App.tsx";
+import DonatePage from "./components/DonateHome.tsx";
+import PaymentSuccess from "./components/PaymentSuccess.tsx";
 
 const router = createBrowserRouter([
   {
@@ -17,8 +18,12 @@ const router = createBrowserRouter([
     Component: MuseumHome,
   },
   {
-    path: "/workers",
-    Component: WorkersHome,
+    path: "/donate",
+    Component: DonatePage,
+  },
+  {
+    path: "/donate/success",
+    Component: PaymentSuccess,
   },
 ]);
 

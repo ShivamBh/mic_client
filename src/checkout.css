@@ -1,0 +1,101 @@
+.checkout-header {
+  width: 60%;
+  margin: 24px auto;
+}
+
+.checkout-header > h1 {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 64px;
+  text-align: left;
+  line-height: 1.3;
+}
+
+.subheading {
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.checkout-wrapper {
+  max-width: calc(90% - 24px);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-direction: row;
+  width: 100%;
+}
+
+.submit-wrapper {
+  max-width: calc(90% - 24px);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.checkout-wrapper > div {
+  width: calc(33.33% - 24px);
+}
+
+.donation-wrapper {
+}
+
+.donation-amount {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.donation-input {
+  margin-top: 21px;
+  border: 2px solid black;
+  padding: 10px;
+  display: block;
+  margin-bottom: 24px;
+  width: 100%;
+  font-size: 16px;
+}
+
+.donation-total {
+  text-align: left;
+  height: 30vh;
+}
+
+.total-subheading {
+  margin: 4px 0;
+}
+
+.total-display {
+  width: 100%;
+  border: 2px solid black;
+  padding: 6px 8px;
+  text-align: left;
+}
+
+.total-display > p {
+  margin: 0;
+}
+
+.payment-submit {
+  display: block;
+  width: calc(33.333% - 24px);
+  margin-top: 40px;
+  padding: 12px 40px;
+  border: 2px solid black;
+  border-radius: 0px;
+  font-size: 16px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
