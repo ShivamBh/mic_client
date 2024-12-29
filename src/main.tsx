@@ -10,7 +10,8 @@ import { nanoid } from "nanoid";
 import Spaces from "@ably/spaces";
 import { AblyProvider } from "ably/react";
 import App from "./App.tsx";
-import DonatePage from "./components/Donate.tsx";
+import DonatePage from "./components/DonateHome.tsx";
+import PaymentSuccess from "./components/PaymentSuccess.tsx";
 
 const router = createBrowserRouter([
   {
@@ -18,8 +19,12 @@ const router = createBrowserRouter([
     Component: MuseumHome,
   },
   {
-    path: "/donate-temp",
+    path: "/donate",
     Component: DonatePage,
+  },
+  {
+    path: "/donate/success",
+    Component: PaymentSuccess,
   },
 ]);
 

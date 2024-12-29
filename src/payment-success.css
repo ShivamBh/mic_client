@@ -1,0 +1,47 @@
+.success-wrapper {
+  padding: 24px;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header > h1 {
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.image {
+  height: 400px;
+  width: 400px;
+}
+
+.image > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border: 2px solid black;
+}
+
+.footer {
+  font-size: 24px;
+}
+
+.footer > p {
+  padding: 8px 64px;
+  border: 2px solid black;
+}
+
+@media screen and (max-width: 768px) {
+  .header > h1 {
+    font-size: 22px;
+  }
+
+  .footer {
+    font-size: 22px;
+  }
+}
