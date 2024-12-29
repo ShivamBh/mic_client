@@ -179,7 +179,7 @@ const CheckoutForm = () => {
         >
           Pay
         </button>
-        {errorMessage && <div>{errorMessage}</div>}
+        {errorMessage && <div className="error">{errorMessage}</div>}
       </div>
     </form>
   );

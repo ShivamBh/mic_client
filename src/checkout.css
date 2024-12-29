@@ -37,6 +37,10 @@
   width: calc(33.33% - 24px);
 }
 
+.donation-wrapper {
+  /* height: 40vh; */
+}
+
 .donation-input-mobile {
   display: none;
 }
@@ -50,7 +54,7 @@
 }
 
 .donation-input {
-  margin-top: 21px;
+  margin-top: 4px;
   border: 2px solid black;
   padding: 10px;
   display: block;
@@ -61,7 +65,7 @@
 
 .donation-total {
   text-align: left;
-  height: 30vh;
+  width: 100%;
 }
 
 .total-subheading {
@@ -166,4 +170,8 @@ input[type="number"] {
   .payment-submit-mobile {
     display: block;
   }
+}
+
+.error {
+  display: none;
 }
