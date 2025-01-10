@@ -96,92 +96,96 @@ const CheckoutForm = () => {
   }, [amount]);
 
   return (
-    <form onSubmit={handleSubmit} className="checkout-form">
-      <div className="checkout-header">
-        <h1>
-          Thank you for supporting our project to slow down AI. To donate any
-          amount, fill in the form below.{" "}
-        </h1>
-      </div>
-      <div className="checkout-wrapper">
-        <div className="donation-input-mobile">
-          <p>Please enter donation amount</p>
-          <div className="donation-amount-mobile">
-            <input
-              type="number"
-              placeholder="amount"
-              step={1}
-              min={2}
-              className="donation-input"
-              onChange={(e) => setAmount(Number(e.target.value))}
+    <div className="form-container">
+      <form onSubmit={handleSubmit} className="checkout-form">
+        <div className="checkout-header">
+          <h1>
+            Thank you for supporting our project to slow down AI. To donate any
+            amount, fill in the form below.{" "}
+          </h1>
+        </div>
+        <div className="checkout-wrapper">
+          <div className="donation-input-mobile">
+            <p>Please enter donation amount</p>
+            <div className="donation-amount-mobile">
+              <input
+                type="number"
+                placeholder="Amount"
+                step={1}
+                min={2}
+                className="donation-input"
+                onChange={(e) => setAmount(Number(e.target.value))}
+              />
+            </div>
+          </div>
+
+          <div className="address-wrapper">
+            <div className="subheading subhead-mobile">Billing information</div>
+            <AddressElement
+              options={{
+                mode: "billing",
+                defaultValues: {
+                  name: "Your Name",
+                  address: {
+                    line1: "Address Line 1",
+                    line2: "Address Line 2",
+                    city: "City",
+                    state: "Alaska",
+                    postal_code: "12345",
+                    country: "US",
+                  },
+                },
+              }}
             />
           </div>
-        </div>
-
-        <div className="address-wrapper">
-          <div className="subheading subhead-mobile">Billing information</div>
-          <AddressElement
-            options={{
-              mode: "billing",
-              defaultValues: {
-                name: "Jane Doe",
-                address: {
-                  line1: "Address Line 1",
-                  line2: "Address Line 2",
-                  city: "City Name",
-                  state: "Alaska",
-                  postal_code: "94080",
-                  country: "US",
-                },
-              },
-            }}
-          />
-        </div>
-        <div className="payments-wrapper">
-          <div className="subheading">Card information</div>
-          <PaymentElement />
-        </div>
-        <div className="donation-wrapper">
-          <div className="subheading">Donation amount</div>
-          <div className="donation-amount">
-            <input
-              type="number"
-              placeholder="amount"
-              step={1}
-              min={2}
-              className="donation-input"
-              onChange={(e) => setAmount(Number(e.target.value))}
-            />
-            <div className="donation-total">
+          <div className="payments-wrapper">
+            <div className="subheading subhead-mobile subhead-card">
+              Card information
+            </div>
+            <PaymentElement />
+          </div>
+          <div className="donation-wrapper">
+            <div className="subheading">Donation amount</div>
+            <div className="donation-amount">
+              <input
+                type="number"
+                placeholder="Amount"
+                step={1}
+                min={2}
+                className="donation-input"
+                onChange={(e) => setAmount(Number(e.target.value))}
+              />
+              {/* <div className="donation-total">
               <p className="total-subheading">Total</p>
               <div className="total-display">
                 <p>{amount}</p>
               </div>
+            </div> */}
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="submit-wrapper">
-        <button
-          className="payment-submit-mobile"
-          type="submit"
-          disabled={!stripe || loading}
-        >
-          {" "}
-          Pay {amount ? `$${amount}` : ""}
-        </button>
+        <div className="submit-wrapper">
+          <button
+            className="payment-submit-mobile"
+            type="submit"
+            disabled={!stripe || loading}
+          >
+            {" "}
+            Pay {amount ? `$${amount}` : ""}
+          </button>
 
-        <button
-          className="payment-submit"
-          type="submit"
-          disabled={!stripe || loading}
-        >
-          Pay
-        </button>
-        {errorMessage && <div className="error">{errorMessage}</div>}
-      </div>
-    </form>
+          <button
+            className="payment-submit"
+            type="submit"
+            disabled={!stripe || loading}
+          >
+            Pay
+          </button>
+          {errorMessage && <div className="error">{errorMessage}</div>}
+        </div>
+      </form>
+    </div>
   );
 };
 

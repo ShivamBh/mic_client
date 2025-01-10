@@ -77,6 +77,7 @@ function DonatePage() {
                   borderRadius: "none",
                   display: "inline-block",
                   width: "100%",
+                  fontSize: "20px",
                 },
                 ".Input::placeholder": {
                   color: "black",
