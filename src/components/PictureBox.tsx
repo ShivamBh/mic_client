@@ -4,7 +4,7 @@ import Slider from "react-slick";
 
 function PictureBox() {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 1000,
     slidesToShow: 1,
