@@ -5,8 +5,10 @@ import { motion } from "framer-motion";
 import "../styles/ui.css";
 import { Realtime } from "ably";
 import { nanoid } from "nanoid";
-import Spaces from "@ably/spaces";
+import Spaces, { CursorUpdate, Members } from "@ably/spaces";
 import PictureBox from "./PictureBox";
+import { useCursors } from "@ably/spaces/dist/mjs/react/useCursors";
+import { useMembers } from "@ably/spaces/dist/mjs/react";
 
 const viewerMemberId = nanoid();
 
@@ -18,11 +20,53 @@ const client = new Realtime({
 const spaces = new Spaces(client);
 
 function HomeUI() {
-  const [cPos, setCpos] = useState({ x: 0, y: 0 });
+  const [workers, setWorkers] = useState([]);
   const [workerCount, setWorkerCount] = useState(0);
+  // useMembers("enter", (member) => {
+  //   console.log("entered", member);
+  //   setWorkerCount(workerCount + 1);
+  // });
+
+  // useMembers("leave", (member) => {
+  //   console.log("left", member);
+  //   setWorkerCount(workerCount - 1);
+  // });
 
   const initSpace = useCallback(async () => {
     const space = await spaces.get("resting-area");
+
+    space.members.on("enter", (member) => {
+      console.log("entered", member);
+      const newWorker = {
+        clientId: member.clientId,
+        x: 10,
+        y: 10,
+      };
+      const updatedWorkers = [...workers, newWorker];
+      setWorkers(updatedWorkers);
+    });
+
+    space.members.on("leave", (member) => {
+      console.log("exited", member);
+      const updatedWorkers = workers.filter(
+        (item) => item.clientId !== member.clientId
+      );
+
+      setWorkers(updatedWorkers);
+    });
+
+    // space.subscribe("update", (spaceState) => {
+    //   const connectedMembersIds = spaceState.members
+    //     .filter((member) => member.isConnected === true)
+    //     .map((item) => item.clientId);
+
+    //   const connectedWorkers = workers.filter((worker) =>
+    //     connectedMembersIds.includes(worker.clientId)
+    //   );
+
+    //   setWorkers(connectedWorkers);
+    //   // setWorkerCount(connectedMembersIds.length);
+    // });
 
     space.subscribe("update", (spaceState) => {
       const connected = spaceState.members.filter(
@@ -31,21 +75,36 @@ function HomeUI() {
       setWorkerCount(connected.length);
     });
 
-    space.cursors.subscribe("update", (cursorUpdate) => {
-      setCpos({
-        x: cursorUpdate.position.x,
-        y: cursorUpdate.position.y,
+    space.cursors.subscribe("update", async (cursorUpdate) => {
+      const mem = await space.members.getAll();
+      console.log("members", mem);
+
+      const connected = mem.filter((item) => item.isConnected);
+
+      // setWorkerCount(connected.length);
+
+      setWorkers((prev) => {
+        const nonUpdates = prev.filter(
+          (item) => item.clientId !== cursorUpdate.clientId
+        );
+        const updated = {
+          clientId: cursorUpdate.clientId,
+          x: cursorUpdate.position.x,
+          y: cursorUpdate.position.y,
+        };
+        const newWorkerState = [...nonUpdates, updated];
+        return newWorkerState;
       });
     });
   }, []);
 
   useEffect(() => {
-    initSpace();
-  }, []);
+    // setWorkerCount(workers.length);
+  }, [workers]);
 
   useEffect(() => {
-    console.log(cPos);
-  }, [cPos]);
+    initSpace();
+  }, []);
 
   return (
     <>
@@ -54,23 +113,27 @@ function HomeUI() {
           <h1 className="header-text">MICROREST</h1>
         </div>
         <div className="ui-window">
-          {workerCount > 0 ? (
-            <div className="cursor-box">
-              <motion.div
-                className="cursor-mover"
-                style={{
-                  position: "absolute",
-                  top: cPos.y,
-                  left: cPos.x,
-                  transformOrigin: "top left",
-                }}
-              >
-                <CursorSvg />
-              </motion.div>
-            </div>
-          ) : (
-            <PictureBox />
-          )}
+          <div className="cursor-box">
+            {workerCount > 0 ? (
+              workers.map((worker) => (
+                <>
+                  <motion.div
+                    className="cursor-mover"
+                    style={{
+                      position: "absolute",
+                      top: worker.y,
+                      left: worker.x,
+                      transformOrigin: "top left",
+                    }}
+                  >
+                    <CursorSvg />
+                  </motion.div>
+                </>
+              ))
+            ) : (
+              <PictureBox />
+            )}
+          </div>
         </div>
         <div className="ui-footer">
           <p className="worker-stats">
@@ -83,23 +146,27 @@ function HomeUI() {
       <div className="ui-container ui-container-mobile">
         <div className="ui-center">
           <div className="ui-window">
-            {workerCount > 0 ? (
-              <div className="cursor-box">
-                <motion.div
-                  className="cursor-mover"
-                  style={{
-                    position: "absolute",
-                    top: cPos.y,
-                    left: cPos.x,
-                    transformOrigin: "top left",
-                  }}
-                >
-                  <CursorSvg />
-                </motion.div>
-              </div>
-            ) : (
-              <PictureBox />
-            )}
+            <div className="cursor-box">
+              {workerCount > 0 ? (
+                workers.map((worker) => (
+                  <>
+                    <motion.div
+                      className="cursor-mover"
+                      style={{
+                        position: "absolute",
+                        top: worker.y,
+                        left: worker.x,
+                        transformOrigin: "top left",
+                      }}
+                    >
+                      <CursorSvg />
+                    </motion.div>
+                  </>
+                ))
+              ) : (
+                <PictureBox />
+              )}
+            </div>
           </div>
           <div className="ui-footer">
             <p className="worker-stats">
