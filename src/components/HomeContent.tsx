@@ -38,6 +38,7 @@ function HomeContent() {
   return (
     <>
       <div className="home-content">
+        <h1 className="header-mobile">Microrest</h1>
         <p className="content-block">
           Behind much of contemporary society’s technological wonders, is
           microworkers*. Grinding along in remote isolation, they label images,
@@ -73,7 +74,10 @@ function HomeContent() {
         <p className="content-block">
           So far a total of {restData.count} workers have rested for{" "}
           {convertSeconds(restData.duration)}. To support the project, please{" "}
-          <Link to={"#"}>donate</Link>.
+          <Link to={"/donate"} target="_blank" className="donation-link">
+            donate
+          </Link>
+          .
         </p>
       </div>
     </>

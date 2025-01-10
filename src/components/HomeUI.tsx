@@ -74,8 +74,39 @@ function HomeUI() {
         </div>
         <div className="ui-footer">
           <p className="worker-stats">
-            {workerCount} worker{workerCount > 1 ? "s" : ""} resting
+            {workerCount} worker
+            {workerCount > 1 || workerCount === 0 ? "s" : ""} resting
           </p>
+        </div>
+      </div>
+
+      <div className="ui-container ui-container-mobile">
+        <div className="ui-center">
+          <div className="ui-window">
+            {workerCount > 0 ? (
+              <div className="cursor-box">
+                <motion.div
+                  className="cursor-mover"
+                  style={{
+                    position: "absolute",
+                    top: cPos.y,
+                    left: cPos.x,
+                    transformOrigin: "top left",
+                  }}
+                >
+                  <CursorSvg />
+                </motion.div>
+              </div>
+            ) : (
+              <PictureBox />
+            )}
+          </div>
+          <div className="ui-footer">
+            <p className="worker-stats">
+              {workerCount} worker
+              {workerCount > 1 || workerCount === 0 ? "s" : ""} resting
+            </p>
+          </div>
         </div>
       </div>
     </>
