@@ -21,8 +21,8 @@
 }
 
 .ui-window {
-  height: 400px;
-  width: 400px;
+  height: 360px;
+  width: 360px;
   border: 2px solid black;
   background-color: white;
 }
@@ -33,22 +33,22 @@
 }
 
 .header-text {
-  width: 400px;
+  width: 360px;
   text-align: center;
   background-color: white;
   margin: 0;
-  font-size: 20px;
+  font-size: 22px;
   padding: 12px 64px;
   border: 2px solid black;
   font-weight: 400;
 }
 
 .worker-stats {
-  width: 400px;
+  width: 360px;
   text-align: center;
   background-color: white;
   margin: 0;
-  font-size: 20px;
+  font-size: 22px;
   padding: 12px 40px;
   border: 2px solid black;
 }
@@ -65,11 +65,17 @@
   }
 
   .ui-container-mobile {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+    width: calc(100vw - 32px);
+    height: calc(100% - 32px);
+    display: block;
+    position: absolute;
+    top: 50%;
+    /* left: 50%; */
+   transform: translateY(-50%);
+   /* transform: translate3d(0, -50%, 0); */
   }
+
+  
 
   .ui-window {
     width: 320px;

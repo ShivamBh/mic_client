@@ -39,8 +39,8 @@ function HomeUI() {
       console.log("entered", member);
       const newWorker = {
         clientId: member.clientId,
-        x: 10,
-        y: 10,
+        x: Math.floor(Math.random() * 100),
+        y: Math.floor(Math.random() * 100),
       };
       const updatedWorkers = [...workers, newWorker];
       setWorkers(updatedWorkers);
