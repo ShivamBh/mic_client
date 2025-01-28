@@ -45,14 +45,13 @@ function PictureBox() {
           <img src={images.image3} alt="" className="slider-img" /> */}
           {
             [...Array(55).keys()].map(item => (
-              <>
                 <img 
-                  src={ new URL(`../assets/rest-images/${item < 10 ? "0" + "item" : item }.jpg`, import.meta.url).href} 
+                  key={`image-${item}`}
+                  src={ new URL(`../assets/rest-images/${item < 10 ? "0" + "item" : item } copy.png`, import.meta.url).href} 
                   alt="" 
                   style={{width: "100%", height: "100%"}}
                   className="slider-img" 
                 />
-              </>
             ))
           }
         </Slider>
