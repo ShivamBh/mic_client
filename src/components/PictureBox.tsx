@@ -47,7 +47,7 @@ function PictureBox() {
             [...Array(55).keys()].map(item => (
                 <img 
                   key={`image-${item}`}
-                  src={ new URL(`../assets/rest-images/${item < 10 ? "0" + "item" : item } copy.png`, import.meta.url).href} 
+                  src={ new URL(`../assets/rest-images/${item < 10 ? "0" + "item" : item }.gif`, import.meta.url).href} 
                   alt="" 
                   style={{width: "100%", height: "100%"}}
                   className="slider-img" 

@@ -123,7 +123,7 @@ const CheckoutForm = () => {
           <div className="address-wrapper">
             <div className="subheading subhead-mobile">Billing information</div>
             <AddressElement
-
+            
               options={{
                 mode: "billing",
                 defaultValues: {
