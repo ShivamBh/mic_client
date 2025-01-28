@@ -1,11 +1,12 @@
 .home-content {
-  margin-top: 80px;
-  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  margin-top: 64px;
   font-size: 22px;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   min-height: 120vh;
 }
 
@@ -14,9 +15,7 @@
 }
 
 .content-block {
-  max-width: 760px;
-  margin: 0;
-  font-size: 20px;
+  font-size: 22px;
   margin-bottom: 24px;
 }
 
@@ -37,12 +36,20 @@
 @media only screen and (max-width: 768px) {
   .home-content {
     margin-top: 0;
-    padding: 0 18px;
+    padding: 0px;
+  }
+
+  .home-content > p:first-of-type {
+    margin-top: 0;
   }
 
   .header-mobile {
-    display: block;
-    font-size: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 22px;
+    margin: 0;
+    padding: 0;
     text-transform: uppercase;
     font-weight: 400;
   }

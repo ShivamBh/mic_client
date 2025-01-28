@@ -3,6 +3,7 @@ import {
   PaymentElement,
   useElements,
   useStripe,
+  
 } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import "../checkout.css";
@@ -122,6 +123,7 @@ const CheckoutForm = () => {
           <div className="address-wrapper">
             <div className="subheading subhead-mobile">Billing information</div>
             <AddressElement
+
               options={{
                 mode: "billing",
                 defaultValues: {
@@ -130,8 +132,8 @@ const CheckoutForm = () => {
                     line1: "Address Line 1",
                     line2: "Address Line 2",
                     city: "City",
-                    state: "Alaska",
-                    postal_code: "12345",
+                    state: "State",
+                    postal_code: "10001",
                     country: "US",
                   },
                 },
@@ -153,6 +155,9 @@ const CheckoutForm = () => {
                 step={1}
                 min={2}
                 className="donation-input"
+                style={{
+                  backgroundColor: "white"
+                }}
                 onChange={(e) => setAmount(Number(e.target.value))}
               />
               {/* <div className="donation-total">

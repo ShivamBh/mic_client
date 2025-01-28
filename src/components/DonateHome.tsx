@@ -88,7 +88,13 @@ function DonatePage() {
         >
           <CheckoutForm />
         </Elements>
+        <div className="donate-disclaimer">
+        <p>
+        *Donations made will exclusively fund the economy of Tara Kelton’s Microrest project and not Fondazione MACTE
+        </p>
       </div>
+      </div>
+      
     </>
   );
 }

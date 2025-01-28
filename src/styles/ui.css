@@ -67,17 +67,17 @@
   .ui-container-mobile {
     width: calc(100vw - 32px);
     height: calc(100% - 32px);
-    display: block;
-    position: absolute;
-    top: 50%;
-    /* left: 50%; */
-   transform: translateY(-50%);
-   /* transform: translate3d(0, -50%, 0); */
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   
 
   .ui-window {
+    margin-top: 30%;
     width: 320px;
     height: 320px;
   }
