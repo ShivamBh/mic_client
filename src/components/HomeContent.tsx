@@ -66,6 +66,9 @@ function HomeContent() {
         <p className="content-block">
         **Donations made will exclusively fund the economy of Tara Kelton’s Microrest project and not Fondazione MACTE
         </p>
+        <p className="content-block"></p>
+        <p className="content-block"></p>
+        <p className="content-block"></p>
       </div>
     </>
   );
