@@ -40,10 +40,14 @@
     padding: 0px 12px;
   }
 
+  .home-content > p {
+    line-height: 1.2;
+  }
+
   .content-block {
     font-size: 25px;
     color: black;
-
+   
   }
 
   .home-content > p:first-of-type {
