@@ -36,7 +36,7 @@
 @media only screen and (max-width: 768px) {
   .home-content {
     margin-top: 0;
-    padding: 0px;
+    padding: 0px 12px;
   }
 
   .home-content > p:first-of-type {
