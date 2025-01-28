@@ -78,11 +78,21 @@ function DonatePage() {
                   display: "inline-block",
                   width: "100%",
                   fontSize: "20px",
-                  marginBottom: "16px"
+                  marginBottom: "16px",
+                  color: "black"
                 },
                 ".Input::placeholder": {
                   color: "black",
                 },
+                ".DropdownItem": {
+                  color: "black"
+                },
+                ".Dropdown": {
+                  color: "black"
+                },
+                ".PickerItem": {
+                  color: "black"
+                }
               },
             },
           }}

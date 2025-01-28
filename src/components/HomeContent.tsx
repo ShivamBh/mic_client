@@ -69,6 +69,7 @@ function HomeContent() {
         <p className="content-block"></p>
         <p className="content-block"></p>
         <p className="content-block"></p>
+        <p className="content-block"></p>
       </div>
     </>
   );

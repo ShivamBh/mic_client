@@ -24,7 +24,6 @@ function PictureBox() {
     autoplaySpeed: 2200,
     cssEase: "ease-out",
     arrows: false
-
   };
 
   // const images = {

@@ -49,7 +49,7 @@
 }
 
 .checkout-wrapper > div {
-  width: calc(33.33% - 24px);
+  width: calc(33.33% - 64px);
 }
 
 .donation-wrapper {
