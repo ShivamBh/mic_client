@@ -78,6 +78,7 @@ function DonatePage() {
                   display: "inline-block",
                   width: "100%",
                   fontSize: "20px",
+                  marginBottom: "16px"
                 },
                 ".Input::placeholder": {
                   color: "black",

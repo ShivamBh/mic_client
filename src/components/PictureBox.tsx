@@ -23,6 +23,8 @@ function PictureBox() {
     autoplay: true,
     autoplaySpeed: 2200,
     cssEase: "ease-out",
+    arrows: false
+
   };
 
   // const images = {
