@@ -38,20 +38,21 @@
   .home-content {
     margin-top: 0;
     padding: 0px 12px;
+    min-height: 525vh;
   }
 
   .home-content > p {
     line-height: 1.2;
+    width: calc(100vw - 56px);
   }
 
   .content-block {
     font-size: 25px;
     color: black;
-   
   }
 
   .home-content > p:first-of-type {
-    margin-top: 0;
+    margin-top: 0px;
   }
 
   .header-mobile {
@@ -63,7 +64,7 @@
     padding: 0;
     text-transform: uppercase;
     font-weight: 400;
-    margin-bottom: 14px;
-    padding-top: 2px;
+    margin-bottom: 16px;
+    padding-top: 4px;
   }
 }
