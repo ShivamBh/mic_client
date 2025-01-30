@@ -39,11 +39,12 @@ function HomeUI() {
       console.log("entered", member);
       const newWorker = {
         clientId: member.clientId,
-        x: Math.floor(Math.random() * 100),
-        y: Math.floor(Math.random() * 100),
+        x: Math.floor(Math.random() * 200),
+        y: Math.floor(Math.random() * 200),
       };
       const updatedWorkers = [...workers, newWorker];
       setWorkers(updatedWorkers);
+      setWorkerCount(updatedWorkers.length)
     });
 
     space.members.on("leave", (member) => {
@@ -53,6 +54,8 @@ function HomeUI() {
       );
 
       setWorkers(updatedWorkers);
+      setWorkerCount(updatedWorkers.length)
+
     });
 
     // space.subscribe("update", (spaceState) => {
@@ -72,7 +75,8 @@ function HomeUI() {
       const connected = spaceState.members.filter(
         (member) => member.isConnected
       );
-      setWorkerCount(connected.length);
+      console.log("conn", connected)
+      // setWorkerCount(connected.length);
     });
 
     space.cursors.subscribe("update", async (cursorUpdate) => {
@@ -121,8 +125,7 @@ function HomeUI() {
                     className="cursor-mover"
                     style={{
                       position: "absolute",
-                      top: worker.y,
-                      left: worker.x,
+                      transform: `translate3d(${worker.x > 280 ? 280 : worker.x}px, ${worker.y > 280 ? 280 : worker.y}px, 0)`,
                       transformOrigin: "top left",
                     }}
                   >
@@ -154,8 +157,7 @@ function HomeUI() {
                       className="cursor-mover"
                       style={{
                         position: "absolute",
-                        top: worker.y,
-                        left: worker.x,
+                        transform: `translate3d(${worker.x > 280 ? 280 : worker.x}px, ${worker.y > 280 ? 280 : worker.y}px, 0)`,
                         transformOrigin: "top left",
                       }}
                     >
