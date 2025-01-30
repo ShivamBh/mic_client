@@ -60,14 +60,21 @@ function DonatePage() {
         <Elements
           stripe={stripePromise}
           options={{
+            fonts: [
+              {
+                cssSrc: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900"
+              }
+            ],
             amount: 1000,
             currency: "usd",
             mode: "payment",
             appearance: {
+              labels: "floating",
               rules: {
                 ".Label": {
                   color: "black",
                   fontSize: "0",
+                  fontFamily: 'Inter'
                 },
                 ".Block": {
                   width: "100%",
@@ -79,7 +86,8 @@ function DonatePage() {
                   width: "100%",
                   fontSize: "20px",
                   marginBottom: "16px",
-                  color: "black"
+                  color: "black",
+                  fontFamily: "Inter"
                 },
                 ".Input::placeholder": {
                   color: "black",

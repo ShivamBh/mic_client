@@ -153,7 +153,7 @@ const CheckoutForm = () => {
                 type="number"
                 placeholder="Amount"
                 step={1}
-                min={2}
+                min={1}
                 className="donation-input"
                 style={{
                   backgroundColor: "white"
