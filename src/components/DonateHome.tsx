@@ -2,12 +2,16 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useEffect, useState } from "react";
 import CheckoutForm from "./CheckoutForm";
+import { useMediaQuery } from 'react-responsive'
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
 const stripePromise = loadStripe("pk_test_PSssaMY1e9Fli0ZChMNzQoSp");
 
 function DonatePage() {
+
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
+
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
   }, []);
@@ -84,8 +88,8 @@ function DonatePage() {
                   borderRadius: "none",
                   display: "inline-block",
                   width: "100%",
-                  fontSize: "20px",
-                  marginBottom: "16px",
+                  fontSize: isTabletOrMobile ? "22px" : "24px",
+                  marginBottom: isTabletOrMobile ? "12px" : "8px",
                   color: "black",
                   fontFamily: "Inter"
                 },

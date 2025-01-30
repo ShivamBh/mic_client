@@ -1,5 +1,5 @@
 .form-container {
-  height: 100vh;
+  height: calc(100vh - 56px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,8 +13,8 @@
 }
 
 .checkout-header {
-  width: 60%;
-  margin: 24px auto;
+  width: 50%;
+  margin: 0 auto;
 }
 
 .checkout-header > h1 {
@@ -27,8 +27,8 @@
 
 .subheading {
   text-align: left;
-  margin-bottom: 8px;
-  font-size: 20px;
+  margin-bottom: 12px;
+  font-size: 24px;
 }
 
 .checkout-wrapper {
@@ -46,7 +46,9 @@
   margin: 0 auto;
   display: flex;
   justify-content: center;
+  
 }
+
 
 .checkout-wrapper > div {
   width: calc(33.33% - 64px);
@@ -66,18 +68,17 @@
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .donation-input {
-  margin-top: 4px;
+  /* margin-top: 1px; */
   border: 2px solid black;
-  padding: 10px;
+  padding: 22px 10px;
   display: block;
   margin-bottom: 24px;
   width: 100%;
-  font-size: 16px;
-  font-size: 20px;
+  font-size: 24px;
   color: black;
 }
 
@@ -119,7 +120,7 @@
 
 
 .payment-submit {
-  width: calc(33.333% - 24px);
+  width: calc(33.333% - 64px);
   display: block;
   background-color: white;
   color: black;
@@ -128,17 +129,24 @@
   padding: 12px 0;
   border: 2px solid black;
   border-radius: 0px;
-  font-size: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  position: relative;
+}
+
+
+.payment-submit:hover {
+  transform: translate3d(2px, 2px, 0);
 }
 
 .donate-disclaimer {
   width: 100vw;
   margin: 0 auto;
   text-align: center;
-  /* position: fixed;
+  position: fixed;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%); */
+  transform: translateX(-50%);
 }
 
 .donate-disclaimer > p {
@@ -172,7 +180,7 @@ input[type="number"] {
   }
 
   .checkout-header > h1 {
-    font-size: 20px;
+    font-size: 22px;
     margin-bottom: 24px;
   }
 
@@ -186,25 +194,30 @@ input[type="number"] {
 
   .subheading {
     display: none;
+    font-family: "Inter";
   }
 
   .subhead-mobile {
     display: block;
-    margin-bottom: 4px;
-    font-size: 20px;
+    margin-bottom: 10px;
+    font-size: 22px;
   }
 
   .subhead-card {
     margin: 24px;
     padding: 0;
     margin-left: 0;
-    margin-bottom: 4px;
-    font-size: 20px;
+    margin-bottom: 10px;
+    font-size: 22px;
     margin-top: 24px;
   }
 
   .donation-total {
     display: none;
+  }
+
+  .donation-amount-mobile {
+    margin-top: 8px;
   }
 
   .donation-amount-mobile > input {
@@ -214,15 +227,21 @@ input[type="number"] {
   .donation-input-mobile {
     display: block;
     margin-bottom: 16px;
-    font-size: 20px;
+    font-size: 22px;
+   
   }
+
+  .donation-input {
+    font-size: 22px;
+  }
+ 
 
   .donation-amount {
     display: none;
   }
 
   .donation-input-mobile > p {
-    margin: 0;
+    margin-bottom: 0;
   }
 
   .submit-wrapper {
@@ -235,7 +254,7 @@ input[type="number"] {
 
   .payment-submit-mobile {
     display: block;
-    font-size: 20px;
+    font-size: 22px;
     width: 100%;
     background-color: white;
     color: black;
@@ -244,9 +263,17 @@ input[type="number"] {
 
   .donate-disclaimer {
     position: relative;
-    width: calc(100vw - 40px);
+    width: calc(100vw - 64px);
     left: 0;
-    transform: translateX(0)
+    transform: translateX(0);
+    
+  }
+
+  .donate-disclaimer > p {
+    text-align: left;
+    line-height: 1.2;
+    letter-spacing: 0.01px;
+    font-size: 14px;
   }
 }
 

@@ -126,17 +126,7 @@ const CheckoutForm = () => {
             
               options={{
                 mode: "billing",
-                defaultValues: {
-                  name: "Your Name",
-                  address: {
-                    line1: "Address Line 1",
-                    line2: "Address Line 2",
-                    city: "City",
-                    state: "State",
-                    postal_code: "10001",
-                    country: "US",
-                  },
-                },
+                
               }}
             />
           </div>
