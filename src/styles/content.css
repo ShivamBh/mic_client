@@ -7,7 +7,7 @@
   justify-content: flex-start;
   flex-direction: column;
   align-items: flex-start;
-  /* min-height: 155vh; */
+  min-height: 240vh;
 }
 
 .home-content > p {
@@ -20,6 +20,12 @@
   color: black;
 }
 
+.donation-link {
+  position: relative;
+  display: block;
+}
+
+
 .donation-link,
 .donation-link:hover,
 .donation-link:active {
@@ -28,6 +34,12 @@
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-thickness: 2px;
+
+}
+
+
+.donation-link:hover {
+  transform: translate3d(2px, 2px, 0);
 }
 
 .header-mobile {
