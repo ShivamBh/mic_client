@@ -33,7 +33,9 @@ function HomeUI() {
   // });
 
   const initSpace = useCallback(async () => {
-    const space = await spaces.get("resting-area");
+    const space = await spaces.get("resting-area", {
+      offlineTimeout: 10000
+    });
 
     space.members.on("enter", (member) => {
       console.log("entered", member);
@@ -58,6 +60,8 @@ function HomeUI() {
 
     });
 
+
+
     // space.subscribe("update", (spaceState) => {
     //   const connectedMembersIds = spaceState.members
     //     .filter((member) => member.isConnected === true)
@@ -75,8 +79,15 @@ function HomeUI() {
       const connected = spaceState.members.filter(
         (member) => member.isConnected
       );
-      console.log("conn", connected)
-      // setWorkerCount(connected.length);
+      console.log("conn", spaceState)
+      if (workers.length === 0) {
+        setWorkers(connected.map(connWorker => ({
+          clientId: connWorker.clientId,
+          x: Math.floor(Math.random() * 200),
+          y: Math.floor(Math.random() * 200),
+        })))
+      }
+      setWorkerCount(connected.length);
     });
 
     space.cursors.subscribe("update", async (cursorUpdate) => {
@@ -85,7 +96,7 @@ function HomeUI() {
 
       const connected = mem.filter((item) => item.isConnected);
 
-      // setWorkerCount(connected.length);
+      setWorkerCount(connected.length);
 
       setWorkers((prev) => {
         const nonUpdates = prev.filter(
@@ -97,6 +108,8 @@ function HomeUI() {
           y: cursorUpdate.position.y,
         };
         const newWorkerState = [...nonUpdates, updated];
+
+        console.log("new worker state", prev, newWorkerState)
         return newWorkerState;
       });
     });
@@ -104,6 +117,7 @@ function HomeUI() {
 
   useEffect(() => {
     // setWorkerCount(workers.length);
+    console.log("workers", workers)
   }, [workers]);
 
   useEffect(() => {
@@ -120,8 +134,8 @@ function HomeUI() {
           <div className="cursor-box">
             {workerCount > 0 ? (
               workers.map((worker) => (
-                <>
                   <motion.div
+                  key={`worker_cursor_${worker.clientId}`}
                     className="cursor-mover"
                     style={{
                       position: "absolute",
@@ -131,7 +145,6 @@ function HomeUI() {
                   >
                     <CursorSvg />
                   </motion.div>
-                </>
               ))
             ) : (
               <PictureBox />
@@ -152,8 +165,8 @@ function HomeUI() {
             <div className="cursor-box">
               {workerCount > 0 ? (
                 workers.map((worker) => (
-                  <>
                     <motion.div
+                      key={`worker_mobile_${worker.clientId}`}
                       className="cursor-mover"
                       style={{
                         position: "absolute",
@@ -163,7 +176,6 @@ function HomeUI() {
                     >
                       <CursorSvg />
                     </motion.div>
-                  </>
                 ))
               ) : (
                 <PictureBox />
