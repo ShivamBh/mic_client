@@ -73,7 +73,7 @@ const CheckoutForm = () => {
       elements,
       clientSecret: clientSecret,
       confirmParams: {
-        return_url: "http://localhost:5173/donate/success",
+        return_url: `${import.meta.env.VITE_SITE_URL}/donate/success`,
       },
     });
 
