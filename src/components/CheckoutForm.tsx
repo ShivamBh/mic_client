@@ -24,10 +24,10 @@ const CheckoutForm = () => {
 
   const fetchPaymentIntent = async () => {
     const response = await fetch(
-      "http://localhost:4242/create-payment-intent",
+      `${import.meta.env.VITE_API_URL}/create-payment-intent`,
       {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
         body: JSON.stringify({ amount: amount }),
       }
     )
