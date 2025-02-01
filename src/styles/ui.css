@@ -7,6 +7,7 @@
   align-items: center;
   flex-direction: column;
   pointer-events: none;
+  z-index: 100;
 }
 
 .ui-container-mobile {
