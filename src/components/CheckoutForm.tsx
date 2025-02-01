@@ -175,7 +175,7 @@ const CheckoutForm = () => {
             type="submit"
             disabled={!stripe || loading}
           >
-            Pay
+            Pay {amount ? `$${amount}` : ""}
           </button>
           {errorMessage && <div className="error">{errorMessage}</div>}
         </div>
