@@ -201,12 +201,12 @@ input[type="number"] {
   }
 
   .subhead-card {
-    margin: 24px;
+    /* margin: 24px; */
     padding: 0;
     margin-left: 0;
     margin-bottom: 12px;
     font-size: 22px;
-    margin-top: 24px;
+    /* margin-top: 24px; */
   }
 
   .donation-total {
@@ -225,13 +225,14 @@ input[type="number"] {
 
   .donation-input-mobile {
     display: block;
-    margin-bottom: 16px;
+    /* margin-bottom: 16px; */
     font-size: 22px;
    
   }
 
   .donation-input {
     font-size: 22px;
+    margin-bottom: 16px;
   }
  
 
