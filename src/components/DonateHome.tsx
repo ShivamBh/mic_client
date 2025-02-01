@@ -90,7 +90,7 @@ function DonatePage() {
                   display: "inline-block",
                   width: "100%",
                   fontSize: isTabletOrMobile ? "22px" : "24px",
-                  marginBottom: isTabletOrMobile ? "12px" : "8px",
+                  marginBottom: isTabletOrMobile ? "16px" : "8px",
                   color: "black",
                   fontFamily: "Inter",
                   padding: "8px"

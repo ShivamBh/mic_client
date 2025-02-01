@@ -27,7 +27,7 @@
 
 .subheading {
   text-align: left;
-  margin-bottom: 12px;
+  margin-bottom: 18px;
   font-size: 24px;
 }
 
@@ -136,7 +136,7 @@
 
 
 .payment-submit:hover {
-  transform: translate3d(2px, 2px, 0);
+  transform: translate3d(-2px, 2px, 0);
 }
 
 .donate-disclaimer {
@@ -199,7 +199,7 @@ input[type="number"] {
 
   .subhead-mobile {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     font-size: 22px;
   }
 
@@ -207,7 +207,7 @@ input[type="number"] {
     margin: 24px;
     padding: 0;
     margin-left: 0;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     font-size: 22px;
     margin-top: 24px;
   }
@@ -217,7 +217,7 @@ input[type="number"] {
   }
 
   .donation-amount-mobile {
-    margin-top: 8px;
+    margin-top: 12px;
   }
 
   .donation-amount-mobile > input {
@@ -272,8 +272,9 @@ input[type="number"] {
   .donate-disclaimer > p {
     text-align: left;
     line-height: 1.2;
-    letter-spacing: 0.01px;
+    letter-spacing: -0.5px;
     font-size: 14px;
+    margin-top: -2px;
   }
 }
 
