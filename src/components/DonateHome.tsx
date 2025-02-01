@@ -78,7 +78,8 @@ function DonatePage() {
                 ".Label": {
                   color: "black",
                   fontSize: "0",
-                  fontFamily: 'Inter'
+                  fontFamily: 'Inter',
+                  padding: "4px 2px"
                 },
                 ".Block": {
                   width: "100%",
@@ -91,7 +92,9 @@ function DonatePage() {
                   fontSize: isTabletOrMobile ? "22px" : "24px",
                   marginBottom: isTabletOrMobile ? "12px" : "8px",
                   color: "black",
-                  fontFamily: "Inter"
+                  fontFamily: "Inter",
+                  padding: "8px"
+
                 },
                 ".Input::placeholder": {
                   color: "black",
