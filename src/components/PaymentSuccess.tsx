@@ -5,7 +5,7 @@ function PaymentSuccess() {
   const params = useSearchParams();
 
   const image = {
-    src: new URL("../assets/rest-images/1.png", import.meta.url).href,
+    src: new URL("../assets/success.webp", import.meta.url).href,
   };
 
   return (
@@ -18,7 +18,7 @@ function PaymentSuccess() {
           <img src={image.src} alt="Line art of a waterfall" />
         </div>
         <div className="footer">
-          <p>Thank you for your support</p>
+          <p>Thank you for your support!</p>
         </div>
       </div>
     </>
