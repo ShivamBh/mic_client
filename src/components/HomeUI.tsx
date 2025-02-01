@@ -9,6 +9,7 @@ import Spaces, { CursorUpdate, Members } from "@ably/spaces";
 import PictureBox from "./PictureBox";
 import { useCursors } from "@ably/spaces/dist/mjs/react/useCursors";
 import { useMembers } from "@ably/spaces/dist/mjs/react";
+import { useMediaQuery } from "react-responsive";
 
 const viewerMemberId = nanoid();
 
@@ -20,6 +21,7 @@ const client = new Realtime({
 const spaces = new Spaces(client);
 
 function HomeUI() {
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
   const [workers, setWorkers] = useState([]);
   const [workerCount, setWorkerCount] = useState(0);
   // useMembers("enter", (member) => {
@@ -31,6 +33,18 @@ function HomeUI() {
   //   console.log("left", member);
   //   setWorkerCount(workerCount - 1);
   // });
+
+  const getAdjustedPositions = (x: number, y: number) => {
+    if (isTabletOrMobile) {
+      console.log("mobile", x, y)
+      return {
+        x: 280/360 * x,
+        y: 280/360 * y
+      }
+    } else {
+      return {x, y}
+    }
+  }
 
   const initSpace = useCallback(async () => {
     const space = await spaces.get("resting-area", {
@@ -104,9 +118,10 @@ function HomeUI() {
         );
         const updated = {
           clientId: cursorUpdate.clientId,
-          x: cursorUpdate.position.x,
-          y: cursorUpdate.position.y,
+          x: getAdjustedPositions(cursorUpdate.position.x, cursorUpdate.position.y).x,
+          y: getAdjustedPositions(cursorUpdate.position.x, cursorUpdate.position.y).y,
         };
+        console.log("updated", updated)
         const newWorkerState = [...nonUpdates, updated];
 
         console.log("new worker state", prev, newWorkerState)
@@ -170,7 +185,7 @@ function HomeUI() {
                       className="cursor-mover"
                       style={{
                         position: "absolute",
-                        transform: `translate3d(${worker.x > 280 ? 280 : worker.x}px, ${worker.y > 280 ? 280 : worker.y}px, 0)`,
+                        transform: `translate3d(${(Math.round(280/360 * worker.x))}px, ${Math.round(280/360 * worker.y)}px, 0)`,
                         transformOrigin: "top left",
                       }}
                     >
