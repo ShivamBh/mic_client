@@ -258,6 +258,7 @@ input[type="number"] {
     background-color: white;
     color: black;
     font-weight: 400;
+    padding: 18px 40px;
   }
 
   .donate-disclaimer {
@@ -270,8 +271,7 @@ input[type="number"] {
 
   .donate-disclaimer > p {
     text-align: left;
-    line-height: 1.2;
-    letter-spacing: -0.5px;
+    line-height: 1.25;
     font-size: 14px;
     margin-top: -2px;
   }

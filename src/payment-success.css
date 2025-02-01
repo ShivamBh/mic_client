@@ -39,9 +39,20 @@
 @media screen and (max-width: 768px) {
   .header > h1 {
     font-size: 22px;
+    text-align: left;
+  }
+
+  .image {
+    height: 320px;
+    width: 320px;
   }
 
   .footer {
     font-size: 22px;
+    
+  }
+
+  .footer > p {
+    padding: 8px 16px;
   }
 }
