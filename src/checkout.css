@@ -136,7 +136,7 @@
 
 
 .payment-submit:hover {
-  transform: translate3d(-2px, 2px, 0);
+  transform: translate3d(2px, 2px, 0);
 }
 
 .donate-disclaimer {
