@@ -118,8 +118,8 @@ function HomeUI() {
         );
         const updated = {
           clientId: cursorUpdate.clientId,
-          x: getAdjustedPositions(cursorUpdate.position.x, cursorUpdate.position.y).x,
-          y: getAdjustedPositions(cursorUpdate.position.x, cursorUpdate.position.y).y,
+          x: cursorUpdate.position.x,
+          y: cursorUpdate.position.y,
         };
         console.log("updated", updated)
         const newWorkerState = [...nonUpdates, updated];
@@ -154,7 +154,7 @@ function HomeUI() {
                     className="cursor-mover"
                     style={{
                       position: "absolute",
-                      transform: `translate3d(${worker.x > 280 ? 280 : worker.x}px, ${worker.y > 280 ? 280 : worker.y}px, 0)`,
+                      transform: `translate3d(${worker.x - 35}px, ${worker.y - 35}px, 0)`,
                       transformOrigin: "top left",
                     }}
                   >
@@ -185,7 +185,7 @@ function HomeUI() {
                       className="cursor-mover"
                       style={{
                         position: "absolute",
-                        transform: `translate3d(${(Math.round(280/360 * worker.x))}px, ${Math.round(280/360 * worker.y)}px, 0)`,
+                        transform: `translate3d(${Math.round(280/360 * worker.x - 35)}px, ${280/360 * worker.y - 35}px, 0)`,
                         transformOrigin: "top left",
                       }}
                     >

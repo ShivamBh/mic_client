@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 219.35 219.35">
+  <!-- Generator: Adobe Illustrator 29.2.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 116)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #fff;
+        filter: url(#drop-shadow-1);
+      }
+    </style>
+    <filter id="drop-shadow-1" x="87.04" y="79.29" width="38" height="55" filterUnits="userSpaceOnUse">
+      <feOffset dx="-1" dy="3"/>
+      <feGaussianBlur result="blur" stdDeviation="1"/>
+      <feFlood flood-color="#000" flood-opacity=".44"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <path class="st0" d="M91.58,80.72v40.39s-.04,1.89,1.61.48l5.64-6.22s1.23-1.26,2.17.42l5.07,11.67s.57,1.22,1.93.48l7.16-3.46s1.58-.56.8-1.93l-5.15-10.54s-.63-1.27.71-1.45h9.75s2.17.08.72-1.45l-28.6-29.01s-1.62-1.27-1.81.61Z"/>
+  <path d="M94.34,88.14v26.14s-.13,2.26,1.48.71l4.57-4.85s.55-.78.92.52l5.81,12.59s.52,1.16,1.42.71l3.16-1.36s.84-.26.45-1.29l-5.1-12.26s-.65-1.1.39-1.03l7.62.19s1.61-.06.52-1.42l-19.62-19.3s-1.62-1.71-1.61.65Z"/>
+</svg>
