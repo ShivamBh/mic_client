@@ -20,7 +20,7 @@ const client = new Realtime({
 
 const spaces = new Spaces(client);
 
-function HomeUI() {
+function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
   const [workers, setWorkers] = useState([]);
   const [workerCount, setWorkerCount] = useState(0);
@@ -61,6 +61,7 @@ function HomeUI() {
       const updatedWorkers = [...workers, newWorker];
       setWorkers(updatedWorkers);
       setWorkerCount(updatedWorkers.length)
+      onMemberChange()
     });
 
     space.members.on("leave", (member) => {
@@ -71,7 +72,7 @@ function HomeUI() {
 
       setWorkers(updatedWorkers);
       setWorkerCount(updatedWorkers.length)
-
+      onMemberChange()
     });
 
 
