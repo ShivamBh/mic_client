@@ -23,6 +23,7 @@
 .donation-link {
   position: relative;
   display: inline-block;
+  text-decoration: none;
 }
 
 
@@ -31,15 +32,20 @@
 .donation-link:active {
   color: black;
   font-weight: 400;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  text-decoration-thickness: 2px;
-
 }
-
 
 .donation-link:hover {
   transform: translate3d(2px, 2px, 0);
+}
+
+.donate-text {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+.donation-link > .donate-period {
+  text-decoration: none;
 }
 
 .header-mobile {

@@ -56,9 +56,10 @@ function HomeContent() {
         <p className="content-block" style={{textAlign: "left"}}>
         An international AI race is underway, advancing at a pace far beyond our ability to regulate it or fully grasp its consequences. In the face of this unstoppable force, MICROREST strives to make the smallest gesture of resistance against the AI machine. To support the project,  please{" "}
           <Link to={"/donate"} target="_blank" className="donation-link">
-            donate
+            <span className="donate-text">donate</span>
+            <span className="donate-period">.</span>
           </Link>
-          .
+          
         </p>
         <p className="content-block">
         *Microworkers or crowdworkers are anonymous online workers who perform discrete on-demand tasks that computers are currently unable to do as economically.
