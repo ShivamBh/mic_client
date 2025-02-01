@@ -154,7 +154,7 @@ function HomeUI() {
                     className="cursor-mover"
                     style={{
                       position: "absolute",
-                      transform: `translate3d(${worker.x - 35}px, ${worker.y - 35}px, 0)`,
+                      transform: `translate3d(${worker.x - 37}px, ${worker.y - 37}px, 0)`,
                       transformOrigin: "top left",
                     }}
                   >
@@ -185,7 +185,7 @@ function HomeUI() {
                       className="cursor-mover"
                       style={{
                         position: "absolute",
-                        transform: `translate3d(${Math.round(280/360 * worker.x - 35)}px, ${280/360 * worker.y - 35}px, 0)`,
+                        transform: `translate3d(${Math.round(280/360 * worker.x - 37)}px, ${280/360 * worker.y - 37}px, 0)`,
                         transformOrigin: "top left",
                       }}
                     >
