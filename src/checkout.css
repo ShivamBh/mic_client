@@ -54,9 +54,6 @@
   width: calc(33.33% - 64px);
 }
 
-.donation-wrapper {
-  /* height: 40vh; */
-}
 
 .donation-input-mobile {
   display: none;
@@ -218,10 +215,12 @@ input[type="number"] {
 
   .donation-amount-mobile {
     margin-top: 12px;
+    border-radius: 0;
   }
 
   .donation-amount-mobile > input {
     background-color: white;
+    border-radius: 0;
   }
 
   .donation-input-mobile {
