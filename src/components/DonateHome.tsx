@@ -6,7 +6,7 @@ import { useMediaQuery } from 'react-responsive'
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
-const stripePromise = loadStripe("pk_test_PSssaMY1e9Fli0ZChMNzQoSp");
+const stripePromise = loadStripe("pk_live_iYgagXgyNiV8yH5JTNb1jrv2");
 
 function DonatePage() {
 
