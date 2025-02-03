@@ -237,6 +237,7 @@ input[type="number"] {
   .donation-input {
     font-size: 22px;
     margin-bottom: 16px;
+    padding: 19px 10px;
   }
  
 
