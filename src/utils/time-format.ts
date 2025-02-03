@@ -12,7 +12,7 @@ const convertSeconds = (seconds: number): string => {
       : "";
 
   if (hours > 0) {
-    return `${hourString} and ${minuteString || "0 minute"} ${
+    return `${hourString} ${minuteString || "0 minute"} ${
       secondString && `and ${secondString}`
     }`;
   } else if (!hours && minutes > 0) {

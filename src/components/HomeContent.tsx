@@ -51,7 +51,7 @@ function HomeContent({restData}: {restData: {count: number, duration: number}}) 
         </p>
         <p className="content-block">
         So far a total of {restData.count} workers have rested for{" "}
-        {convertSeconds(restData.duration)}.
+        {restData.duration > 0 ? convertSeconds(restData.duration) : "0 seconds"}.
         </p>
         <p className="content-block" style={{textAlign: "left"}}>
         An international AI race is underway, advancing at a pace far beyond our ability to regulate it or fully grasp its consequences. In the face of this unstoppable force, MICROREST strives to make the smallest gesture of resistance against the AI machine. To support the project,  please{" "}
