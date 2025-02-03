@@ -1,5 +1,5 @@
 .form-container {
-  height: calc(100vh - 56px);
+  height: calc(90vh - 56px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-top: 16px;
 }
 
 .checkout-header {
@@ -148,6 +149,7 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+  pointer-events: none;
 }
 
 .donate-disclaimer > p {
@@ -202,6 +204,7 @@ input[type="number"] {
     display: block;
     margin-bottom: 12px;
     font-size: 22px;
+    margin-top: 16px
   }
 
   .subhead-card {
@@ -210,7 +213,7 @@ input[type="number"] {
     margin-left: 0;
     margin-bottom: 12px;
     font-size: 22px;
-    /* margin-top: 24px; */
+    margin-top: 16px; 
   }
 
   .donation-total {
