@@ -1,5 +1,5 @@
 .form-container {
-  height: calc(90vh - 56px);
+  height: calc(94vh - 56px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,14 +25,15 @@
 .checkout-header > h1 {
   font-size: 24px;
   font-weight: 400;
-  margin-bottom: 64px;
+  margin-bottom: 40px;
+  margin-top: 24px;
   text-align: left;
   line-height: 1.3;
 }
 
 .subheading {
   text-align: left;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   font-size: 24px;
 }
 
@@ -56,7 +57,7 @@
 
 
 .checkout-wrapper > div {
-  width: calc(33.33% - 64px);
+  width: calc(33.33% - 56px);
 }
 
 
@@ -70,19 +71,23 @@
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  font-size: 24px;
+  font-size: 16px;
 }
 
 .donation-input {
   /* margin-top: 1px; */
   border: 2px solid black;
-  padding: 22px 10px;
+  padding: 25px 10px;
   display: block;
   margin-bottom: 24px;
   width: 100%;
-  font-size: 24px;
+  font-size: 16px;
   color: black;
+  line-height: 1;
+
 }
+
+
 
 .donation-input::placeholder {
   color: black;
@@ -134,6 +139,7 @@
   font-size: 24px;
   cursor: pointer;
   position: relative;
+  font-family: "Inter";
 }
 
 
@@ -185,6 +191,9 @@ input[type="number"] {
   .checkout-header > h1 {
     font-size: 22px;
     margin-bottom: 24px;
+    margin-top: 23px;
+    line-height: 1.25;
+
   }
 
   .checkout-wrapper {
@@ -204,16 +213,16 @@ input[type="number"] {
     display: block;
     margin-bottom: 12px;
     font-size: 22px;
-    margin-top: 16px
+    margin-top: 24px
   }
 
   .subhead-card {
     /* margin: 24px; */
     padding: 0;
     margin-left: 0;
-    margin-bottom: 12px;
+    margin-bottom: 13px;
     font-size: 22px;
-    margin-top: 16px; 
+    margin-top: 24px; 
   }
 
   .donation-total {
@@ -234,7 +243,7 @@ input[type="number"] {
     display: block;
     /* margin-bottom: 16px; */
     font-size: 22px;
-   
+    margin-top: 2px;
   }
 
   .donation-input {
@@ -268,6 +277,8 @@ input[type="number"] {
     color: black;
     font-weight: 400;
     padding: 18px 40px;
+    font-family: "Inter";
+    margin-top: 70px;
   }
 
   .donate-disclaimer {

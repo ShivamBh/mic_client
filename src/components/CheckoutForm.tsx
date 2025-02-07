@@ -112,7 +112,6 @@ const CheckoutForm = () => {
             <div className="donation-amount-mobile">
               <input
                 type="number"
-                placeholder="Amount"
                 step={1}
                 min={1}
                 className="donation-input"
@@ -142,7 +141,6 @@ const CheckoutForm = () => {
             <div className="donation-amount">
               <input
                 type="number"
-                placeholder="Amount"
                 step={1}
                 min={1}
                 className="donation-input"
