@@ -42,7 +42,7 @@ function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
     const initActiveMembers = await space.members.getAll()
     const initActiveMemberIds = initActiveMembers.filter(mem => mem.isConnected == true).map(mem => mem.clientId)
 
-    const storedCursorStates = JSON.parse(localStorage.getItem("microrest_cursor_states"))
+    const storedCursorStates = localStorage.getItem("microrest_cursor_states") ? JSON.parse(localStorage.getItem("microrest_cursor_states")) : {}
     console.log("stored cursor", storedCursorStates)
     setCursorStates(storedCursorStates)
     setActiveMemberIds(initActiveMemberIds)
