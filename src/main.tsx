@@ -12,6 +12,7 @@ import { AblyProvider } from "ably/react";
 import App from "./App.tsx";
 import DonatePage from "./components/DonateHome.tsx";
 import PaymentSuccess from "./components/PaymentSuccess.tsx";
+import { SpaceProvider, SpacesProvider } from "@ably/spaces/dist/mjs/react/index";
 
 const router = createBrowserRouter([
   {
@@ -34,12 +35,22 @@ const client = new Realtime({
 });
 
 const spaces = new Spaces(client);
+const spaceName = "resting-area";
+
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
     <AblyProvider client={client}>
-      <App spaces={spaces} />
+      <SpacesProvider client={spaces}>
+          <SpaceProvider name={spaceName}
+            options={{
+              offlineTimeout: 10000
+            }}
+          >
+            <RouterProvider router={router} />
+          {/*  <App >  */} 
+          </SpaceProvider>
+        </SpacesProvider>
+      
     </AblyProvider>
-    <RouterProvider router={router} />
-  </StrictMode>
+    
 );

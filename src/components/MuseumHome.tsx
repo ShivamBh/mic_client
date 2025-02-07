@@ -3,8 +3,12 @@ import HomeUI from "./HomeUI";
 import HomeContent from "./HomeContent";
 import { useCallback, useEffect, useState } from "react";
 import supabase from "../utils/supabase";
+import { useCursors } from "@ably/spaces/dist/mjs/react";
 
 function MuseumHome() {
+
+ 
+
   const [restData, setRestData] = useState({
     count: 0,
     duration: 0,
@@ -26,7 +30,6 @@ function MuseumHome() {
     const totalDuration = totalRest.data[0].sum as number;
     const numWorkers = count.count as number;
 
-    console.log("from parent called", totalDuration, numWorkers)
 
     setRestData({
       count: numWorkers,

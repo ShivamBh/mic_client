@@ -1,15 +1,15 @@
 import "./App.css";
 import Spaces from "@ably/spaces";
-import { SpacesProvider, SpaceProvider } from "@ably/spaces/react";
+import { SpacesProvider, SpaceProvider, useCursors } from "@ably/spaces/react";
 
-const spaceName = "getSpace";
+const spaceName = "resting-area";
 
-function App({ spaces }: { spaces: Spaces }) {
+function App() {
+  const {cursors} = useCursors({returnCursors: true})
+  console.log("from home", cursors)
   return (
     <>
-      <SpacesProvider client={spaces}>
-        <SpaceProvider name={spaceName}>{/* <LiveCursors /> */}</SpaceProvider>
-      </SpacesProvider>
+      <div>main</div>
     </>
   );
 }
