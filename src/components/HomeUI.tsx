@@ -197,8 +197,8 @@ function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
           </div>
           <div className="ui-footer">
             <p className="worker-stats">
-            {Object.values(cursors).length} worker
-            {Object.values(cursors).length > 1 || Object.values(cursors).length === 0 ? "s" : ""} resting
+            {activeMemberIds.length} worker
+            {activeMemberIds.length > 1 || activeMemberIds.length === 0 ? "s" : ""} resting
             </p>
           </div>
         </div>
