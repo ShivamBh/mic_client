@@ -29,7 +29,7 @@ function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
   const [cursorStates, setCursorStates] = useState<Record<string, {
     member: SpaceMember,
     cursorUpdate: CursorUpdate
-  }>>(JSON.parse(localStorage.getItem("microrest_cursor_states")))
+  }>>(JSON.parse(localStorage.getItem("microrest_cursor_states")) || {})
   const [activeMemberIds, setActiveMemberIds] = useState<string[]>([])
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
   const [workers, setWorkers] = useState([]);
