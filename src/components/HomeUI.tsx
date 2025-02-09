@@ -88,6 +88,7 @@ function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
 
   useEffect(() => {
     setCursorStates(cursors)
+    console.log("effect cursors", cursors)
     
   }, [cursors])
 
@@ -96,6 +97,8 @@ function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
     if (Object.keys(cursors).length > 0) {
       localStorage.setItem("microrest_cursor_states", JSON.stringify(cursors))
     }
+
+    console.log("effetc cursor states", cursorStates)
     
   }, [cursorStates])
   
