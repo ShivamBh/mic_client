@@ -35,7 +35,22 @@ function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
   const [workers, setWorkers] = useState([]);
   const [workerCount, setWorkerCount] = useState(0);
 
-  const initSpace = useCallback(async () => {
+  const removeMemberFromStoredCursors = (memberId: string) => {
+    const cursorStates = JSON.parse(localStorage.getItem("microrest_cursor_states"))
+    if (Object.keys(cursorStates).includes(memberId)) {
+      const updatedCursors = delete cursorStates[memberId]
+      localStorage.setItem("microrest_cursor_states",JSON.stringify(updatedCursors))
+    }
+  }
+
+  const removeMemberIdFromStore = (memberId) => {
+    const memberIds = JSON.parse(localStorage.getItem("microrest_active_mem_ids"))
+    if (memberIds.includes(memberId)) {
+      localStorage.setItem("microrest_active_mem_ids", JSON.stringify(memberIds.filter(id => id !== memberId)))
+    }
+  }
+
+  const initSpace = (async () => {
     const space = await spaces.get("resting-area", {
     });
 
@@ -43,48 +58,35 @@ function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
     const initActiveMemberIds = initActiveMembers.filter(mem => mem.isConnected == true).map(mem => mem.clientId)
 
     const storedCursorStates = localStorage.getItem("microrest_cursor_states") ? JSON.parse(localStorage.getItem("microrest_cursor_states")) : {}
-    console.log("stored cursor", storedCursorStates)
     setCursorStates(storedCursorStates)
     setActiveMemberIds(initActiveMemberIds)
 
 
-    space.members.on("enter", (member) => {
-      const updatedMemberIds = activeMemberIds
-      updatedMemberIds.push(member.clientId)
-
-      console.log("members list updated:entering", updatedMemberIds)
-
+    space.members.on("enter", async (member) => {
+      const allActiveMembers = await space.members.getAll()
+      const trueConn = allActiveMembers.filter(mem => mem.isConnected == true)
+      const updatedMemberIds = allActiveMembers.filter(mem => mem.isConnected === true).map(mem => mem.clientId)
       setActiveMemberIds(updatedMemberIds)
-      
       setWorkerCount(updatedMemberIds.length)
     });
 
     space.members.on("leave", async(member) => {
-
       const all = await space.members.getAll()
-      console.log("all mems", all)
-
       const updatedWorkers = workers.filter(
         (item) => item.clientId !== member.clientId
       );
-
-      console.log("leaving", member)
-
       setActiveMemberIds((prev) => {
-        console.log("prev", prev)
         return prev.filter(item => item !== member.clientId)
       })
-      
+      removeMemberFromStoredCursors(member.clientId)
     }); 
-  }, []);
+  })
 
   useEffect(() => {
-    console.log("active memberIDS", activeMemberIds)
     localStorage.setItem("microrest_active_mem_ids", JSON.stringify(activeMemberIds))
   }, [activeMemberIds])
 
   useEffect(() => {
-    /* console.log("cursor state update", cursors) */
     setCursorStates(cursors)
     
   }, [cursors])
@@ -93,7 +95,6 @@ function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
   useEffect(() => {
     if (Object.keys(cursors).length > 0) {
       localStorage.setItem("microrest_cursor_states", JSON.stringify(cursors))
-      console.log("updated cursor state, non -empty")
     }
     
   }, [cursorStates])
@@ -101,21 +102,12 @@ function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
 
   useEffect(() => {
     // setWorkerCount(workers.length);
-    console.log("workers", workerCount)
-
+    onMemberChange()
   }, [workerCount]);
 
   useEffect(() => {
     initSpace();
   }, []);
-
-  const getMovementAmount = (elementId, yRatio, xRatio) => {
-    const rect = document.getElementById(elementId).getBoundingClientRect()
-    return {
-      x: xRatio * rect.width,
-      y: yRatio * rect.height
-    }
-  }
 
   return (
     <>
@@ -128,7 +120,7 @@ function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
             
 
             {
-              activeMemberIds.length > 0 ? Object.values(cursorStates)
+              activeMemberIds.length > 0 && Object.keys(cursorStates).length > 0 && typeof cursorStates === "object" ? Object.values(cursorStates)
               .filter(state => activeMemberIds.includes(state.member.clientId) )
               .map(data => {
                 const cursorUpdate = data.cursorUpdate as any;
@@ -168,7 +160,7 @@ function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
           <div className="ui-window">
             <div className="cursor-box">
             {
-              activeMemberIds.length > 0 ? Object.values(cursorStates)
+              activeMemberIds.length > 0 && Object.keys(cursorStates).length > 0 && typeof cursorStates === "object" ? Object.values(cursorStates)
               .filter(state => activeMemberIds.includes(state.member.clientId) )
               .map(data => {
                 const cursorUpdate = data.cursorUpdate as any;
