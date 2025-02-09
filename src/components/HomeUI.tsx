@@ -29,7 +29,7 @@ function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
   const [cursorStates, setCursorStates] = useState<Record<string, {
     member: SpaceMember,
     cursorUpdate: CursorUpdate
-  }>>(JSON.parse(localStorage.getItem("microrest_cursor_states")) || {})
+  }>>({})
   const [activeMemberIds, setActiveMemberIds] = useState<string[]>([])
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
   const [workers, setWorkers] = useState([]);
@@ -58,6 +58,13 @@ function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
     const initActiveMemberIds = initActiveMembers.filter(mem => mem.isConnected == true).map(mem => mem.clientId)
 
     const storedCursorStates = localStorage.getItem("microrest_cursor_states") ? JSON.parse(localStorage.getItem("microrest_cursor_states")) : {}
+    Object.keys(storedCursorStates).forEach(item => {
+      storedCursorStates[item]["member"] = {
+        clientId: storedCursorStates[item]["cursorUpdate"]["clientId"]
+      }
+    })
+
+    console.log("formatetd", storedCursorStates)
     setCursorStates(storedCursorStates)
     setActiveMemberIds(initActiveMemberIds)
 
