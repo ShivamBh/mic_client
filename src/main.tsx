@@ -13,6 +13,7 @@ import App from "./App.tsx";
 import DonatePage from "./components/DonateHome.tsx";
 import PaymentSuccess from "./components/PaymentSuccess.tsx";
 import { SpaceProvider, SpacesProvider } from "@ably/spaces/dist/mjs/react/index";
+import ArchiveHome from "./components/ArchiveHome.tsx";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
     path: "/donate/success",
     Component: PaymentSuccess,
   },
+  {
+    path: "/archive",
+    Component: ArchiveHome
+  }
 ]);
 
 const client = new Realtime({
@@ -39,18 +44,18 @@ const spaceName = "resting-area";
 
 
 createRoot(document.getElementById("root")!).render(
-    <AblyProvider client={client}>
-      <SpacesProvider client={spaces}>
-          <SpaceProvider name={spaceName}
-            options={{
-              offlineTimeout: 10000
-            }}
-          >
-            <RouterProvider router={router} />
-          {/*  <App >  */} 
-          </SpaceProvider>
-        </SpacesProvider>
-      
-    </AblyProvider>
-    
+  <AblyProvider client={client}>
+    <SpacesProvider client={spaces}>
+      <SpaceProvider name={spaceName}
+        options={{
+          offlineTimeout: 10000
+        }}
+      >
+        <RouterProvider router={router} />
+        {/*  <App >  */}
+      </SpaceProvider>
+    </SpacesProvider>
+
+  </AblyProvider>
+
 );
