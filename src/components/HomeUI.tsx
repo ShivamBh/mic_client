@@ -21,10 +21,10 @@ const client = new Realtime({
 
 const spaces = new Spaces(client);
 
-function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
- 
- 
-  const { cursors } =  useCursors({ returnCursors: true });
+function HomeUI({ onMemberChange }: { onMemberChange: () => void }) {
+
+
+  const { cursors } = useCursors({ returnCursors: true });
 
   const [cursorStates, setCursorStates] = useState<Record<string, {
     member: SpaceMember,
@@ -39,7 +39,7 @@ function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
     const cursorStates = JSON.parse(localStorage.getItem("microrest_cursor_states"))
     if (Object.keys(cursorStates).includes(memberId)) {
       const updatedCursors = delete cursorStates[memberId]
-      localStorage.setItem("microrest_cursor_states",JSON.stringify(updatedCursors))
+      localStorage.setItem("microrest_cursor_states", JSON.stringify(updatedCursors))
     }
   }
 
@@ -64,7 +64,6 @@ function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
       }
     })
 
-    console.log("formatetd", storedCursorStates)
     setCursorStates(storedCursorStates)
     setActiveMemberIds(initActiveMemberIds)
 
@@ -77,7 +76,7 @@ function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
       setWorkerCount(updatedMemberIds.length)
     });
 
-    space.members.on("leave", async(member) => {
+    space.members.on("leave", async (member) => {
       const all = await space.members.getAll()
       const updatedWorkers = workers.filter(
         (item) => item.clientId !== member.clientId
@@ -86,7 +85,7 @@ function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
         return prev.filter(item => item !== member.clientId)
       })
       removeMemberFromStoredCursors(member.clientId)
-    }); 
+    });
   })
 
   useEffect(() => {
@@ -95,8 +94,7 @@ function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
 
   useEffect(() => {
     setCursorStates(cursors)
-    console.log("effect cursors", cursors)
-    
+
   }, [cursors])
 
 
@@ -105,10 +103,9 @@ function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
       localStorage.setItem("microrest_cursor_states", JSON.stringify(cursors))
     }
 
-    console.log("effetc cursor states", cursorStates)
-    
+
   }, [cursorStates])
-  
+
 
   useEffect(() => {
     // setWorkerCount(workers.length);
@@ -127,33 +124,33 @@ function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
         </div>
         <div className="ui-window">
           <div className="cursor-box">
-            
+
 
             {
               activeMemberIds.length > 0 && Object.keys(cursorStates).length > 0 && typeof cursorStates === "object" ? Object.values(cursorStates)
-              .filter(state => activeMemberIds.includes(state.member.clientId) )
-              .map(data => {
-                const cursorUpdate = data.cursorUpdate as any;
-                const member = data.member as any;
-                if (cursorUpdate.data.state === "leave") return;
-                return (
-                  <motion.div
-                    key={member.connectionId}
-                    id={`member-cursor-${member.connectionId}`}
-                    className="cursor-mover"
-                    animate={{
-                      top: `${data.cursorUpdate.position.y - 35}px`,
-                      left: `${data.cursorUpdate.position.x - 35}px`,
-                    }}
-                    style={{
-                      position: "absolute",
-                      transformOrigin: "top left",
-                    }}
-                  >
-                    <CursorSvg />
-                  </motion.div>
-                )
-              }) : <PictureBox></PictureBox>
+                .filter(state => activeMemberIds.includes(state.member.clientId))
+                .map(data => {
+                  const cursorUpdate = data.cursorUpdate as any;
+                  const member = data.member as any;
+                  if (cursorUpdate.data.state === "leave") return;
+                  return (
+                    <motion.div
+                      key={member.connectionId}
+                      id={`member-cursor-${member.connectionId}`}
+                      className="cursor-mover"
+                      animate={{
+                        top: `${data.cursorUpdate.position.y - 35}px`,
+                        left: `${data.cursorUpdate.position.x - 35}px`,
+                      }}
+                      style={{
+                        position: "absolute",
+                        transformOrigin: "top left",
+                      }}
+                    >
+                      <CursorSvg />
+                    </motion.div>
+                  )
+                }) : <PictureBox></PictureBox>
             }
           </div>
         </div>
@@ -169,38 +166,38 @@ function HomeUI({onMemberChange}: {onMemberChange: () => void}) {
         <div className="ui-center">
           <div className="ui-window">
             <div className="cursor-box">
-            {
-              activeMemberIds.length > 0 && Object.keys(cursorStates).length > 0 && typeof cursorStates === "object" ? Object.values(cursorStates)
-              .filter(state => activeMemberIds.includes(state.member.clientId) )
-              .map(data => {
-                const cursorUpdate = data.cursorUpdate as any;
-                const member = data.member as any;
-                if (cursorUpdate.data.state === "leave") return;
-                return (
-                  <motion.div
-                    key={member.connectionId}
-                    id={`member-cursor-${member.connectionId}`}
-                    className="cursor-mover"
-                    animate={{
-                      top: `${data.cursorUpdate.position.y * 280 / 400}px`,
-                      left: `${data.cursorUpdate.position.x * 280 / 400}px`,
-                    }}
-                    style={{
-                      position: "absolute",
-                      transformOrigin: "top left",
-                    }}
-                  >
-                    <CursorSvg />
-                  </motion.div>
-                )
-              }) : <PictureBox></PictureBox>
-            }
+              {
+                activeMemberIds.length > 0 && Object.keys(cursorStates).length > 0 && typeof cursorStates === "object" ? Object.values(cursorStates)
+                  .filter(state => activeMemberIds.includes(state.member.clientId))
+                  .map(data => {
+                    const cursorUpdate = data.cursorUpdate as any;
+                    const member = data.member as any;
+                    if (cursorUpdate.data.state === "leave") return;
+                    return (
+                      <motion.div
+                        key={member.connectionId}
+                        id={`member-cursor-${member.connectionId}`}
+                        className="cursor-mover"
+                        animate={{
+                          top: `${data.cursorUpdate.position.y * 280 / 400 - 24}px`,
+                          left: `${data.cursorUpdate.position.x * 280 / 400 - 24}px`,
+                        }}
+                        style={{
+                          position: "absolute",
+                          transformOrigin: "top left",
+                        }}
+                      >
+                        <CursorSvg />
+                      </motion.div>
+                    )
+                  }) : <PictureBox></PictureBox>
+              }
             </div>
           </div>
           <div className="ui-footer">
             <p className="worker-stats">
-            {activeMemberIds.length} worker
-            {activeMemberIds.length > 1 || activeMemberIds.length === 0 ? "s" : ""} resting
+              {activeMemberIds.length} worker
+              {activeMemberIds.length > 1 || activeMemberIds.length === 0 ? "s" : ""} resting
             </p>
           </div>
         </div>
