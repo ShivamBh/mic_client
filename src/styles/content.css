@@ -20,12 +20,17 @@
   color: black;
 }
 
+.content-italic {
+  font-family: "InterItalics", "sans-serif";
+  font-optical-sizing: none;
+  font-style: italic;
+}
+
 .donation-link {
   position: relative;
   display: inline-block;
   text-decoration: none;
 }
-
 
 .donation-link,
 .donation-link:hover,

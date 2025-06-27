@@ -1,20 +1,18 @@
 import { useCallback, useEffect, useState } from "react";
 import "../styles/ui.css";
+import "../index.css";
+
 import PictureBox from "./PictureBox";
 import { useMediaQuery } from "react-responsive";
 
-
-
 function ArchiveUI({ onMemberChange }: { onMemberChange: () => void }) {
-
-
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 800px)" });
   // const [workers, setWorkers] = useState([]);
   const [workerCount, setWorkerCount] = useState(0);
 
   useEffect(() => {
     // setWorkerCount(workers.length);
-    onMemberChange()
+    onMemberChange();
   }, [workerCount]);
 
   return (
@@ -25,17 +23,11 @@ function ArchiveUI({ onMemberChange }: { onMemberChange: () => void }) {
         </div>
         <div className="ui-window">
           <div className="cursor-box">
-
-
             <PictureBox></PictureBox>
           </div>
         </div>
-        <div className="ui-footer" style={{
-          visibility: "hidden"
-        }}>
-          <p className="worker-stats">
-
-          </p>
+        <div className="ui-footer" style={{}}>
+          <p className="worker-stats">0 workers resting</p>
         </div>
       </div>
 
@@ -46,12 +38,8 @@ function ArchiveUI({ onMemberChange }: { onMemberChange: () => void }) {
               <PictureBox></PictureBox>
             </div>
           </div>
-          <div className="ui-footer" style={{
-            visibility: "hidden"
-          }}>
-            <p className="worker-stats">
-
-            </p>
+          <div className="ui-footer" style={{}}>
+            <p className="worker-stats">0 workers resting</p>
           </div>
         </div>
       </div>

@@ -5,18 +5,16 @@ import { useCallback, useEffect, useState } from "react";
 import supabase from "../utils/supabase";
 import { useCursors } from "@ably/spaces/dist/mjs/react";
 import ArchiveUI from "./ArchiveUI";
+import ArchiveContent from "./ArchiveContent";
+import "../index.css";
 
 function ArchiveHome() {
-
-
-
   const [restData, setRestData] = useState({
     count: 0,
     duration: 0,
   });
 
   const fetchRestData = useCallback(async () => {
-
     const count = await supabase
       .from("completed_rests")
       .select("*", { count: "exact", head: true });
@@ -30,7 +28,6 @@ function ArchiveHome() {
 
     const totalDuration = totalRest.data[0].sum as number;
     const numWorkers = count.count as number;
-
 
     setRestData({
       count: numWorkers,
@@ -46,7 +43,7 @@ function ArchiveHome() {
     <>
       <div className="home-container">
         <ArchiveUI onMemberChange={fetchRestData} />
-        <HomeContent restData={restData} />
+        <ArchiveContent restData={restData} />
       </div>
     </>
   );
