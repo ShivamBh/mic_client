@@ -1,0 +1,331 @@
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('../assets/fonts/IBMPlexMono-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('../assets/fonts/IBMPlexMono-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+.museum-v2 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #000;
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+/* ── Header ── */
+.museum-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+}
+
+.museum-logo {
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+.workers-pill {
+  font-size: 13px;
+  border: 1.5px solid #000;
+  border-radius: 999px;
+  padding: 6px 16px;
+  white-space: nowrap;
+}
+
+/* ── Desktop two-column layout ── */
+.museum-main {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  min-height: calc(100vh - 60px);
+}
+
+.museum-left {
+  padding: 40px 40px 60px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.museum-divider {
+  background: #000;
+  width: 1px;
+}
+
+.museum-right {
+  padding: 40px 24px 60px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Hero text ── */
+.hero-text {
+  font-size: 13px;
+  line-height: 1.8;
+  white-space: pre-line;
+  margin: 0;
+}
+
+.hero-text .donate-inline {
+  display: block;
+  margin-top: 24px;
+}
+
+/* ── Bed illustration ── */
+.bed-illustration {
+  width: 239px;
+}
+
+.bed-illustration img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Donate CTA ── */
+.donate-cta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: #000;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.donate-cta:hover {
+  text-decoration: underline;
+}
+
+/* ── Stats counter ── */
+.stats-counter {
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Feed heading ── */
+.feed-heading {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0;
+  border-bottom: 1px solid #000;
+  padding-bottom: 8px;
+}
+
+/* ── Live feed ── */
+.live-feed-container {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.feed-line {
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0 0 2px;
+  white-space: pre;
+}
+
+.feed-loading,
+.feed-error,
+.feed-end {
+  font-size: 12px;
+  color: #888;
+  margin: 8px 0 0;
+}
+
+/* ── Donate section ── */
+.donate-section {
+  border-top: 1px solid #000;
+  padding: 48px 24px;
+}
+
+.donate-section h2 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0 0 8px;
+}
+
+.donate-description {
+  font-size: 13px;
+  line-height: 1.8;
+  max-width: 520px;
+  margin: 0 0 32px;
+}
+
+/* ── Footer ── */
+.museum-footer {
+  border-top: 1px solid #000;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 12px;
+  gap: 16px;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer-slow-note {
+  font-style: italic;
+  max-width: 360px;
+}
+
+.footer-credit a {
+  color: #000;
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.hand-icon {
+  width: 48px;
+  height: auto;
+}
+
+/* ── Mobile layout ── */
+@media (max-width: 768px) {
+  .museum-main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .museum-divider {
+    display: none;
+  }
+
+  .museum-left {
+    display: none;
+  }
+
+  .museum-right {
+    padding: 0;
+  }
+
+  /* Mobile header */
+  .museum-header {
+    justify-content: center;
+    padding: 12px 16px;
+  }
+
+  .museum-logo {
+    display: none;
+  }
+
+  .workers-pill {
+    font-size: 13px;
+  }
+
+  /* Mobile hero canvas */
+  .mobile-hero {
+    height: 100vh;
+    position: relative;
+  }
+
+  .mobile-scroll-hint {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    font-size: 20px;
+  }
+
+  /* Mobile workers sticky pill */
+  .mobile-workers-pill {
+    position: sticky;
+    top: 60px;
+    z-index: 20;
+    padding: 12px 16px;
+    background: #fff;
+  }
+
+  /* Mobile content sections */
+  .mobile-section {
+    padding: 24px 16px;
+    border-top: 1px solid #000;
+  }
+
+  .mobile-section .stats-counter {
+    margin-bottom: 16px;
+  }
+
+  .mobile-feed-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mobile-feed-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, #fff);
+    pointer-events: none;
+  }
+
+  .mobile-hero-text {
+    padding: 32px 16px;
+    font-size: 13px;
+    line-height: 1.8;
+    white-space: pre-line;
+  }
+
+  .mobile-bed {
+    padding: 0 16px 32px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .mobile-bed img {
+    width: 180px;
+    height: auto;
+  }
+
+  .mobile-donate-cta {
+    text-align: center;
+    padding: 16px;
+    font-size: 13px;
+    border-top: 1px dashed #000;
+    border-bottom: 1px dashed #000;
+    margin: 0 16px 32px;
+    display: block;
+    color: #000;
+    text-decoration: none;
+  }
+
+  /* Slow interface */
+  button, a, input {
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .museum-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

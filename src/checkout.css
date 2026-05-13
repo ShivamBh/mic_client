@@ -1,20 +1,20 @@
 .form-container {
   height: calc(94vh - 56px);
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; */
 }
 
 .checkout-form {
-  height: 100%;
-  display: flex;
+  /* height: 100%; */
+  /* display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: 16px;
+  margin-top: 16px; */
 }
 
 .checkout-header {
-  width: 50%;
+  width: 100%;
   margin: 0 auto;
   /* position: fixed;
   top: 20px;
@@ -34,60 +34,67 @@
 .subheading {
   text-align: left;
   margin-bottom: 16px;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .checkout-wrapper {
   max-width: calc(90% - 24px);
-  margin: 0 auto;
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
   align-items: start;
-  flex-direction: row;
+  flex-direction: row; */
   width: 100%;
 }
 
 .submit-wrapper {
-  width: calc(90% - 24px);
   margin: 0 auto;
   display: flex;
-  justify-content: center;
-  
+  justify-content: flex-start;
 }
-
 
 .checkout-wrapper > div {
-  width: calc(33.33% - 56px);
+  width: 75%;
 }
 
+.payments-wrapper {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
 
 .donation-input-mobile {
   display: none;
 }
 
+.donation-wrapper {
+  margin-top: 60px;
+}
+
 .donation-amount {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; */
   height: 100%;
   font-size: 16px;
 }
 
+.donation-amount > input {
+  border: none;
+  border-bottom: 1px solid black;
+}
+
 .donation-input {
   /* margin-top: 1px; */
-  border: 2px solid black;
-  padding: 25px 10px;
+
+  padding: 16px 16px;
   display: block;
   margin-bottom: 24px;
   width: 100%;
   font-size: 16px;
   color: black;
   line-height: 1;
-
 }
-
-
 
 .donation-input::placeholder {
   color: black;
@@ -124,10 +131,8 @@
   font-size: 16px;
 }
 
-
-
 .payment-submit {
-  width: calc(33.333% - 64px);
+  width: calc(75% - 64px);
   display: block;
   background-color: white;
   color: black;
@@ -139,9 +144,8 @@
   font-size: 24px;
   cursor: pointer;
   position: relative;
-  font-family: "Inter";
+  font-family: 'Inter';
 }
-
 
 .payment-submit:hover {
   transform: translate3d(2px, 2px, 0);
@@ -170,7 +174,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
@@ -193,7 +197,6 @@ input[type="number"] {
     margin-bottom: 24px;
     margin-top: 23px;
     line-height: 1.25;
-
   }
 
   .checkout-wrapper {
@@ -206,14 +209,14 @@ input[type="number"] {
 
   .subheading {
     display: none;
-    font-family: "Inter";
+    font-family: 'Inter';
   }
 
   .subhead-mobile {
     display: block;
     margin-bottom: 12px;
     font-size: 22px;
-    margin-top: 24px
+    margin-top: 24px;
   }
 
   .subhead-card {
@@ -222,7 +225,7 @@ input[type="number"] {
     margin-left: 0;
     margin-bottom: 13px;
     font-size: 22px;
-    margin-top: 24px; 
+    margin-top: 24px;
   }
 
   .donation-total {
@@ -251,7 +254,6 @@ input[type="number"] {
     margin-bottom: 16px;
     padding: 19px 10px;
   }
- 
 
   .donation-amount {
     display: none;
@@ -277,7 +279,7 @@ input[type="number"] {
     color: black;
     font-weight: 400;
     padding: 18px 40px;
-    font-family: "Inter";
+    font-family: 'Inter';
     margin-top: 70px;
   }
 
@@ -286,7 +288,6 @@ input[type="number"] {
     width: calc(100vw - 64px);
     left: 0;
     transform: translateX(0);
-    
   }
 
   .donate-disclaimer > p {

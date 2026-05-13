@@ -1,19 +1,13 @@
-import {
-  AddressElement,
-  PaymentElement,
-  useElements,
-  useStripe,
-  
-} from "@stripe/react-stripe-js";
-import { useEffect, useState } from "react";
-import "../checkout.css";
+import { AddressElement, PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { useEffect, useState } from 'react';
+import '../checkout.css';
 
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const [amount, setAmount] = useState(0);
 
-  const [clientSecret, setClientSecret] = useState("");
+  const [clientSecret, setClientSecret] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -23,14 +17,11 @@ const CheckoutForm = () => {
   };
 
   const fetchPaymentIntent = async () => {
-    const response = await fetch(
-      `${import.meta.env.VITE_API_URL}/create-payment-intent`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
-        body: JSON.stringify({ amount: amount }),
-      }
-    )
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/create-payment-intent`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+      body: JSON.stringify({ amount: amount }),
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -80,32 +71,30 @@ const CheckoutForm = () => {
     if (error) {
       // This point is only reached if there's an immediate error when
       // confirming the payment. Show the error to your customer (for example, payment details incomplete)
-      console.log("error confirm", error)
+      console.log('error confirm', error);
       handleError(error);
     } else {
       // Your customer is redirected to your `return_url`. For some payment
       // methods like iDEAL, your customer is redirected to an intermediate
       // site first to authorize the payment, then redirected to the `return_url`.
-      console.log(`Succecss`)
+      console.log(`Succecss`);
     }
   };
 
   useEffect(() => {
-    console.log("amount", amount);
-    fetchPaymentIntent().then((res) =>
-      console.log("Finished setting up intent")
-    );
+    console.log('amount', amount);
+    fetchPaymentIntent().then((res) => console.log('Finished setting up intent'));
   }, [amount]);
 
   return (
     <div className="form-container">
       <form onSubmit={handleSubmit} className="checkout-form">
-        <div className="checkout-header">
+        {/* <div className="checkout-header">
           <h1>
             Thank you for supporting our project to slow down AI. To donate any
             amount, fill in the form below.{" "}
           </h1>
-        </div>
+        </div> */}
         <div className="checkout-wrapper">
           <div className="donation-input-mobile">
             <p>Please enter donation amount</p>
@@ -123,17 +112,14 @@ const CheckoutForm = () => {
           <div className="address-wrapper">
             <div className="subheading subhead-mobile">Billing information</div>
             <AddressElement
-            
               options={{
-                mode: "billing",
-                
+                mode: 'billing',
               }}
             />
           </div>
+
           <div className="payments-wrapper">
-            <div className="subheading subhead-mobile subhead-card">
-              Card information
-            </div>
+            <div className="subheading subhead-mobile subhead-card">Card information</div>
             <PaymentElement />
           </div>
           <div className="donation-wrapper">
@@ -145,7 +131,7 @@ const CheckoutForm = () => {
                 min={1}
                 className="donation-input"
                 style={{
-                  backgroundColor: "white"
+                  backgroundColor: '#EEEDED',
                 }}
                 onChange={(e) => setAmount(Number(e.target.value))}
               />
@@ -160,21 +146,13 @@ const CheckoutForm = () => {
         </div>
 
         <div className="submit-wrapper">
-          <button
-            className="payment-submit-mobile"
-            type="submit"
-            disabled={!stripe || loading}
-          >
-            {" "}
-            Pay {amount ? `$${amount}` : ""}
+          <button className="payment-submit-mobile" type="submit" disabled={!stripe || loading}>
+            {' '}
+            Pay {amount ? `$${amount}` : ''}
           </button>
 
-          <button
-            className="payment-submit"
-            type="submit"
-            disabled={!stripe || loading}
-          >
-            Pay {amount ? `$${amount}` : ""}
+          <button className="payment-submit" type="submit" disabled={!stripe || loading}>
+            Pay {amount ? `$${amount}` : ''}
           </button>
           {errorMessage && <div className="error">{errorMessage}</div>}
         </div>

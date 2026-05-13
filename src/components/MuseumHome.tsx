@@ -1,9 +1,12 @@
 import "../museum.css";
 import HomeUI from "./HomeUI";
 import HomeContent from "./HomeContent";
+import LiveFeed from "./LiveFeed";
 import { useCallback, useEffect, useState } from "react";
 import supabase from "../utils/supabase";
 import { useCursors } from "@ably/spaces/dist/mjs/react";
+
+const API_URL = import.meta.env.VITE_API_URL as string;
 
 function MuseumHome() {
 
@@ -45,8 +48,9 @@ function MuseumHome() {
     <>
       <div className="home-container">
         <HomeUI onMemberChange={fetchRestData}/>
-        <HomeContent restData={restData}/>
+        {/* <HomeContent restData={restData}/> */}
       </div>
+      <LiveFeed apiUrl={API_URL} />
     </>
   );
 }
