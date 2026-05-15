@@ -38,7 +38,7 @@ export default function ViewportCursors() {
   }, [space]);
 
   const active = Object.values(cursors).filter(
-    (c) => c.data?.state !== 'leave' && c.position,
+    (c) => c != null && c.data?.state !== 'leave' && c.position,
   );
 
   return (
