@@ -244,7 +244,7 @@ function HomeUI({
           </div>
           <div className="feed-container">
             <p className="feed-heading">Log Data</p>
-            <LiveFeed apiUrl="http://localhost:8080" />
+            <LiveFeed apiUrl={import.meta.env.VITE_API_URL} />
           </div>
         </div>
       </div>
