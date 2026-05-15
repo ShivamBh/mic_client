@@ -17,6 +17,7 @@ import ScrollIconCurved from '../assets/scroll-icon.png';
 import HandAnim from '../assets/handanim.png';
 import DownArrow from '../assets/down-arrow.png';
 import DonatePage from './DonateHome';
+import convertSeconds from '../utils/time-format';
 
 // import handAnimation from '../assets/handanimation.mov';
 
@@ -47,7 +48,13 @@ const client = new Realtime({
 
 const spaces = new Spaces(client);
 
-function HomeUI({ onMemberChange }: { onMemberChange: () => void }) {
+function HomeUI({
+  onMemberChange,
+  restData,
+}: {
+  onMemberChange: () => void;
+  restData: { count: number; duration: number };
+}) {
   const { cursors } = useCursors({ returnCursors: true });
 
   const [cursorStates, setCursorStates] = useState<
@@ -142,6 +149,7 @@ function HomeUI({ onMemberChange }: { onMemberChange: () => void }) {
   }, [workerCount]);
 
   useEffect(() => {
+    console.log(`restDATA`, restData);
     initSpace();
   }, []);
 
@@ -153,7 +161,9 @@ function HomeUI({ onMemberChange }: { onMemberChange: () => void }) {
 
       <div className="site-header">
         {/* <div className="site-name">MICROREST</div> */}
-        <div className="site-stats">0 workers resting</div>
+        <div className="site-stats">
+          {activeMemberIds.length} worker{activeMemberIds.length != 1 ? 's' : ''} resting
+        </div>
         {/* <div className="spacer-r">{" "}</div> */}
       </div>
 
@@ -207,12 +217,6 @@ function HomeUI({ onMemberChange }: { onMemberChange: () => void }) {
               <DonatePage />
             </div>
 
-            <div className="checkout-success">
-              <p>
-                Thank you for your payment. Your donation has provided 30 minutes of rest to 3
-                workers.
-              </p>
-            </div>
             <div className="scroll-icon">
               <img className="down-arrow" src={DownArrow} alt="" />
             </div>
@@ -233,7 +237,10 @@ function HomeUI({ onMemberChange }: { onMemberChange: () => void }) {
         </div>
         <div className="feed-col">
           <div className="rest-stats">
-            <p>225 workers have stopped training AI for 30 hours, 14 minutes and 10 seconds</p>
+            <p>
+              {restData.count} workers have stopped training AI for{' '}
+              {convertSeconds(restData.duration)}
+            </p>
           </div>
           <div className="feed-container">
             <p className="feed-heading">Log Data</p>
