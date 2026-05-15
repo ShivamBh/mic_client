@@ -6,3 +6,30 @@
   position: relative;
   overflow-x: hidden;
 }
+
+.site-footer {
+  width: 100%;
+  /* padding: 20px 40px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.footer-icon {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+}
+
+.footer-text {
+  font-size: 20px;
+}
+
+.footer-text p {
+  margin: 0;
+}
+
+.footer-space {
+  width: 40px;
+  height: 20px;
+}
