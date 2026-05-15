@@ -1,43 +1,21 @@
-import "../museum.css";
-import HomeUI from "./HomeUI";
-import HomeContent from "./HomeContent";
-import LiveFeed from "./LiveFeed";
-import { useCallback, useEffect, useState } from "react";
-import supabase from "../utils/supabase";
-import { useCursors } from "@ably/spaces/dist/mjs/react";
+import '../museum.css';
+import HomeUI from './HomeUI';
+import { useCallback, useEffect, useState } from 'react';
+import HandIcon from '../assets/handicon.png';
 
 const API_URL = import.meta.env.VITE_API_URL as string;
 
 function MuseumHome() {
-
- 
-
   const [restData, setRestData] = useState({
     count: 0,
     duration: 0,
   });
 
   const fetchRestData = useCallback(async () => {
-    
-    const count = await supabase
-      .from("completed_rests")
-      .select("*", { count: "exact", head: true });
-    const totalRest = await supabase
-      .from("completed_rests")
-      .select("task_duration_in_secs.sum()");
-
-    if (!totalRest || !totalRest.data) {
-      return;
-    }
-
-    const totalDuration = totalRest.data[0].sum as number;
-    const numWorkers = count.count as number;
-
-
-    setRestData({
-      count: numWorkers,
-      duration: totalDuration,
-    });
+    const res = await fetch(`${API_URL}/api/rest-stats`);
+    if (!res.ok) return;
+    const data: { count: number; duration: number } = await res.json();
+    setRestData(data);
   }, []);
 
   useEffect(() => {
@@ -47,10 +25,18 @@ function MuseumHome() {
   return (
     <>
       <div className="home-container">
-        <HomeUI onMemberChange={fetchRestData}/>
+        <HomeUI restData={restData} onMemberChange={fetchRestData} />
         {/* <HomeContent restData={restData}/> */}
+        <div className="site-footer">
+          <div className="footer-icon">
+            <img src={HandIcon} alt="Hand Icon" width={40} height={40} />
+          </div>
+          <div className="footer-text">
+            <p>© Tara Kelton 2026</p>
+          </div>
+          <div className="footer-space"></div>
+        </div>
       </div>
-      <LiveFeed apiUrl={API_URL} />
     </>
   );
 }
