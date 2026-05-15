@@ -66,7 +66,7 @@ function DonatePage() {
             fonts: [
               {
                 cssSrc:
-                  'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900',
+                  'https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400',
               },
             ],
             amount: 1000,
@@ -78,7 +78,7 @@ function DonatePage() {
                 '.Label': {
                   color: 'black',
                   fontSize: '0',
-                  fontFamily: 'Inter',
+                  fontFamily: 'IBM Plex Mono',
                   padding: '4px 2px',
                 },
                 '.Block': {
@@ -96,7 +96,7 @@ function DonatePage() {
                   fontSize: isTabletOrMobile ? '16px' : '16px',
                   marginBottom: isTabletOrMobile ? '16px' : '8px',
                   color: 'black',
-                  fontFamily: 'Inter',
+                  fontFamily: 'IBM Plex Mono',
                   padding: '8px',
                 },
                 '.Input::placeholder': {

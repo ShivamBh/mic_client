@@ -1,6 +1,7 @@
 import { AddressElement, PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useEffect, useState } from 'react';
 import '../checkout.css';
+import { donationSummary } from '../utils/donation-summary';
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -10,6 +11,7 @@ const CheckoutForm = () => {
   const [clientSecret, setClientSecret] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [succeeded, setSucceeded] = useState(false);
 
   const handleError = (error: any) => {
     setLoading(false);
@@ -63,9 +65,7 @@ const CheckoutForm = () => {
     const { error } = await stripe.confirmPayment({
       elements,
       clientSecret: clientSecret,
-      confirmParams: {
-        return_url: `${import.meta.env.VITE_SITE_URL}/donate/success`,
-      },
+      redirect: 'if_required',
     });
 
     if (error) {
@@ -74,15 +74,13 @@ const CheckoutForm = () => {
       console.log('error confirm', error);
       handleError(error);
     } else {
-      // Your customer is redirected to your `return_url`. For some payment
-      // methods like iDEAL, your customer is redirected to an intermediate
-      // site first to authorize the payment, then redirected to the `return_url`.
-      console.log(`Succecss`);
+      setLoading(false);
+      setSucceeded(true);
     }
   };
 
   useEffect(() => {
-    console.log('amount', amount);
+    if (amount <= 0) return;
     fetchPaymentIntent().then((res) => console.log('Finished setting up intent'));
   }, [amount]);
 
@@ -157,6 +155,12 @@ const CheckoutForm = () => {
           {errorMessage && <div className="error">{errorMessage}</div>}
         </div>
       </form>
+
+      {succeeded ? (
+        <div className="checkout-success">
+          <p>{donationSummary(amount)}</p>
+        </div>
+      ) : null}
     </div>
   );
 };
