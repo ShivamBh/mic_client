@@ -29,7 +29,6 @@
 
 .site-content > div {
   width: calc(50% - 24px);
-  height: 50px;
 }
 
 .content-col {
@@ -130,6 +129,5 @@
 }
 
 .feed-container {
-  max-width: 75%;
   margin-top: 40px;
 }
