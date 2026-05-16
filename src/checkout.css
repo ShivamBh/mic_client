@@ -22,7 +22,7 @@
 }
 
 .checkout-header > h1 {
-  font-size: 24px;
+  font-size: 19px;
   font-weight: 400;
   margin-bottom: 40px;
   margin-top: 24px;
@@ -37,7 +37,7 @@
 }
 
 .checkout-wrapper {
-  max-width: calc(90% - 24px);
+  max-width: 86%;
   /* display: flex;
   justify-content: space-between;
   align-items: start;
@@ -46,7 +46,7 @@
 }
 
 .submit-wrapper {
-  margin: 0 auto;
+  max-width: 86%;
   display: flex;
   justify-content: flex-start;
 }
@@ -79,7 +79,7 @@
   justify-content: space-between;
   align-items: center; */
   height: 100%;
-  font-size: 16px;
+  font-size: 19px;
 }
 
 .donation-amount > input {
@@ -115,7 +115,7 @@
 
 .total-display {
   width: 100%;
-  border: 2px solid black;
+  border: 1px solid black;
   padding: 6px 8px;
   text-align: left;
 }
@@ -135,16 +135,16 @@
 }
 
 .payment-submit {
-  width: calc(75% - 64px);
+  width: 75%;
   display: block;
   background-color: #eeeded;
   color: black;
   font-weight: 400;
   margin-top: 40px;
   padding: 18px 0;
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 0px;
-  font-size: 24px;
+  font-size: 19px;
   cursor: pointer;
   position: relative;
   font-family: 'IBM Plex Mono', monospace;
@@ -157,7 +157,6 @@
 }
 
 .payment-submit:hover {
-  box-shadow: 0px 0px 0px 0px black;
   transform: translate(3px, 3px);
 }
 
@@ -274,7 +273,7 @@ input[type='number'] {
   }
 
   .submit-wrapper {
-    width: calc(100% - 64px);
+    max-width: 75%;
   }
 
   .payment-submit {

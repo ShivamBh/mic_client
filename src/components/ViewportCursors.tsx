@@ -12,9 +12,12 @@ export default function ViewportCursors() {
     if (!space) return;
 
     // Seed initial positions from Ably channel history (workers already connected)
-    space.cursors.getAll().then((initial) => {
-      setCursors((prev) => ({ ...prev, ...initial }));
-    }).catch(() => {});
+    space.cursors
+      .getAll()
+      .then((initial) => {
+        setCursors((prev) => ({ ...prev, ...initial }));
+      })
+      .catch(() => {});
 
     const cursorHandler = (update: CursorUpdate) => {
       setCursors((prev) => ({ ...prev, [update.connectionId]: update }));
@@ -38,7 +41,7 @@ export default function ViewportCursors() {
   }, [space]);
 
   const active = Object.values(cursors).filter(
-    (c) => c != null && c.data?.state !== 'leave' && c.position,
+    (c) => c != null && c.data?.state !== 'leave' && c.position
   );
 
   return (
@@ -56,8 +59,8 @@ export default function ViewportCursors() {
           key={cursor.connectionId}
           src={cursorWhiteBg}
           alt=""
-          width={48}
-          height={48}
+          width={72}
+          height={72}
           style={{ position: 'fixed', transform: 'translate(-12px, -8px)' }}
           animate={{
             left: `${cursor.position.x * 100}vw`,

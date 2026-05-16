@@ -177,10 +177,10 @@ function HomeUI({
               Microrest is a website where you pay microworkers to rest.
               <br />
               <br />
-              Microworkers are the anonymous, remote online workers who train AI systems, moderate
-              content, and translate text — the human labour that makes "automated" platforms work.
-              They work for pennies, eyes fixed on the screen and wrists constantly moving —
-              training the same AI systems that will eventually replace them.
+              <i>Microworkers</i> are the anonymous, remote online workers who train AI systems,
+              moderate content, and translate text — the human labour that makes "automated"
+              platforms work. They work for pennies, eyes fixed on the screen and wrists constantly
+              moving — training the same AI systems that will eventually replace them.
               <br /> <br />
               For 25 cents, you can pay a worker to rest for 10 minutes. This fee is at the top end
               of what these workers are usually paid for their labour – to relentlessly click,
@@ -193,7 +193,7 @@ function HomeUI({
             </h1>
 
             <div className="scroll-icon">
-              <img src={ScrollIconCurved} alt="Scroll Icon" />
+              <img src={DownArrow} alt="Scroll Icon" />
             </div>
           </section>
           <section className="hand-animation">
