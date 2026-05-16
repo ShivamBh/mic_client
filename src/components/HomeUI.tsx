@@ -19,6 +19,7 @@ import HandAnimPic from '../assets/handanim.png';
 import DownArrow from '../assets/down-arrow.png';
 import DonatePage from './DonateHome';
 import convertSeconds from '../utils/time-format';
+import HandIcon from '../assets/handicon.png';
 
 // import handAnimation from '../assets/handanimation.mov';
 
@@ -218,24 +219,16 @@ function HomeUI({
                 it's an art project. You will receive a signed certificate of donation.
               </p>
               <p>
-                For questions about donations contact studio@tarakelton.com. Funds are disbursed to
-                workers daily.
+                For questions about donations contact
+                <a href="mailto:someone@example.com"> studio@tarakelton.com</a>. Funds are disbursed
+                to workers daily.
               </p>
             </div>
             <div className="checkout-form">
               <DonatePage />
             </div>
-
             <div className="scroll-icon">
               <img className="down-arrow" src={DownArrow} alt="" />
-            </div>
-          </section>
-          <section className="final">
-            <div className="resting-interface">
-              <p>
-                This is a resting interface - buttons, scrollbars, all respond at a slow, laboured
-                pace.
-              </p>
             </div>
             <div className="sign-off">
               <i>
@@ -255,6 +248,22 @@ function HomeUI({
             <p className="feed-heading">Log Data</p>
             <LiveFeed apiUrl={import.meta.env.VITE_API_URL} />
           </div>
+          <section className="final">
+            <div className="resting-interface">
+              <p>
+                This is a resting interface - buttons, scrollbars, all respond at a slow, laboured
+                pace.
+              </p>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div className="site-footer">
+        <div className="footer-icon">
+          <img src={HandIcon} alt="Hand Icon" width={50} />
+        </div>
+        <div className="footer-text">
+          <p>© Tara Kelton 2026</p>
         </div>
       </div>
 

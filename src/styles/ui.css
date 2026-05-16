@@ -84,6 +84,14 @@
   margin-bottom: 80px;
 }
 
+.donate-subheading a,
+.donate-subheading a:hover,
+.donate-subheading a:link,
+.donate-subheading a:visited {
+  color: black;
+  text-underline-offset: 3px;
+}
+
 .checkout-success {
   width: 80%;
   height: 400px;
@@ -100,10 +108,15 @@
   width: 50%;
 }
 
+.sign-off {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
 .resting-interface {
-  margin-top: 520px;
+  margin-top: 280px;
   margin-bottom: 80px;
-  width: 100%;
+  width: calc(100% - 40px);
   height: 120px;
   background-color: #dcdada;
   border-radius: 100px;
@@ -154,4 +167,23 @@
 .sign-off a:hover {
   text-underline-offset: 5px;
   transition: 0.5s ease-in;
+}
+
+.site-footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-icon {
+  width: calc(50% - 24px);
+}
+
+.footer-icon img {
+  margin-top: -10px;
+}
+
+.footer-text {
+  width: calc(50% - 24px);
 }
