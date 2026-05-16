@@ -65,7 +65,11 @@ const CheckoutForm = () => {
     const { error } = await stripe.confirmPayment({
       elements,
       clientSecret: clientSecret,
+
       redirect: 'if_required',
+      confirmParams: {
+        return_url: import.meta.env.VITE_SITE_URL,
+      },
     });
 
     if (error) {
