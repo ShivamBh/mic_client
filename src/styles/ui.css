@@ -14,8 +14,18 @@
 .site-stats {
   font-size: 19px;
   padding: 20px 56px;
-  background-color: white;
   border-radius: 40px;
+  position: relative;
+}
+
+.site-stats::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: white;
+  border-radius: 40px;
+  filter: blur(4px);
+  z-index: -1;
 }
 
 .site-content {
