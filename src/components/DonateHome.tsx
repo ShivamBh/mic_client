@@ -85,7 +85,7 @@ function DonatePage() {
                   width: '100%',
                 },
                 '.Input': {
-                  border: '2px solid black',
+                  border: '1px solid black',
                   borderTop: 'none',
                   borderLeft: 'none',
                   borderRight: 'none',

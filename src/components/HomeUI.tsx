@@ -14,7 +14,8 @@ import { usePresence } from 'ably/react';
 import ViewportCursors from './ViewportCursors';
 import LiveFeed from './LiveFeed';
 import ScrollIconCurved from '../assets/scroll-icon.png';
-import HandAnim from '../assets/handanim.png';
+// import HandAnim from '../assets/handanimation.webm';
+import HandAnimPic from '../assets/handanim.png';
 import DownArrow from '../assets/down-arrow.png';
 import DonatePage from './DonateHome';
 import convertSeconds from '../utils/time-format';
@@ -196,7 +197,15 @@ function HomeUI({
             </div>
           </section>
           <section className="hand-animation">
-            <img className="hand-anim" src={HandAnim} alt="hand anim" />
+            <img className="hand-anim" src={HandAnimPic} alt="hand anim" />
+            {/* <video
+              src={HandAnim}
+              autoPlay
+              loop
+              aria-label="hand animation loop"
+              height={200}
+              width={200}
+            ></video> */}
             <img className="down-arrow" src={DownArrow} alt="" />
           </section>
           <section className="donation">
