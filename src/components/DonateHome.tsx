@@ -6,7 +6,7 @@ import { useMediaQuery } from 'react-responsive';
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
-const stripePromise = loadStripe('pk_live_iYgagXgyNiV8yH5JTNb1jrv2');
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PK);
 
 function DonatePage() {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' });
