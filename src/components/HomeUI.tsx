@@ -193,7 +193,7 @@ function HomeUI({
               DONATE BELOW
             </h1>
 
-            <div className="scroll-icon">
+            <div className="scroll-icon scroll-icon-first">
               <img src={DownArrow} alt="Scroll Icon" />
             </div>
           </section>
