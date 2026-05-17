@@ -194,6 +194,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 20px;
 }
 
 .footer-icon {
@@ -201,7 +202,8 @@
 }
 
 .footer-icon img {
-  margin-top: -10px;
+  margin-top: -8px;
+  margin-left: 8px;
 }
 
 .footer-text {

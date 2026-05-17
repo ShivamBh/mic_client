@@ -260,7 +260,7 @@ function HomeUI({
       </div>
       <div className="site-footer">
         <div className="footer-icon">
-          <img src={HandIcon} alt="Hand Icon" width={50} />
+          <img src={HandIcon} alt="Hand Icon" width={55} />
         </div>
         <div className="footer-text">
           <p>© Tara Kelton 2026</p>
