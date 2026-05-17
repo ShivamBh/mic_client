@@ -243,9 +243,9 @@ function HomeUI({
               {restData.count} workers have stopped training AI for{' '}
               {convertSeconds(restData.duration)}
             </p>
+            <p className="feed-heading">Log Data</p>
           </div>
           <div className="feed-container">
-            <p className="feed-heading">Log Data</p>
             <LiveFeed apiUrl={import.meta.env.VITE_API_URL} />
           </div>
           <section className="final">
