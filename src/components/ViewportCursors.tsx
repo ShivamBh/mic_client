@@ -59,8 +59,8 @@ export default function ViewportCursors() {
           key={cursor.connectionId}
           src={cursorWhiteBg}
           alt=""
-          width={72}
-          height={72}
+          width={84}
+          height={84}
           style={{ position: 'fixed', transform: 'translate(-12px, -8px)' }}
           animate={{
             left: `${cursor.position.x * 100}vw`,
