@@ -36,6 +36,10 @@
   font-size: 19px;
 }
 
+.address-wrapper {
+  margin-top: 48px;
+}
+
 .checkout-wrapper {
   max-width: 86%;
   /* display: flex;
