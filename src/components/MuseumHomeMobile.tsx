@@ -7,7 +7,9 @@ import DonatePage from './DonateHome';
 import convertSeconds from '../utils/time-format';
 import bedIllustration from '../assets/bed-illustration.png';
 import handIcon from '../assets/handicon.png';
+import DownArrow from '../assets/down.svg';
 import './museum-home-mobile.css';
+import HandAnimPic from '../assets/hand_animation.gif';
 
 const API_URL = import.meta.env.VITE_API_URL as string;
 
@@ -27,6 +29,18 @@ export default function MuseumHomeMobile() {
   const [totalSecs, setTotalSecs] = useState(0);
   const [completedCount, setCompletedCount] = useState(0);
   const restingCountRef = useRef(0);
+  const firstScreenRef = useRef<HTMLDivElement>(null);
+  const [pillSticky, setPillSticky] = useState(false);
+
+  useEffect(() => {
+    const el = firstScreenRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => setPillSticky(!entry.isIntersecting), {
+      threshold: 0,
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     fetch(`${API_URL}/api/timer/state`)
@@ -69,22 +83,23 @@ export default function MuseumHomeMobile() {
     <div className="mhm-root">
       <ViewportCursors />
 
-      {/* First screen: header + hero + pill all fit in 100vh via flex column.
-          The pill is sticky so it rises and covers the header as you scroll. */}
-      <div className="mhm-first-screen">
+      <div className="mhm-first-screen" ref={firstScreenRef}>
         <header className="mhm-header">
           <span className="mhm-logo">MICROREST</span>
         </header>
 
-        <div className="mhm-hero">
-          <span className="mhm-scroll-hint">↓</span>
-        </div>
+        <div className="mhm-hero"></div>
+      </div>
 
-        <div className="mhm-pill-row">
-          <span className="mhm-pill">
-            {restingCount} worker{restingCount !== 1 ? 's' : ''} resting
-          </span>
-        </div>
+      <div className="mhm-pill-row">
+        <img
+          src={DownArrow}
+          alt=""
+          className={`mhm-scroll-hint${pillSticky ? ' mhm-scroll-hint--hidden' : ''}`}
+        />
+        <span className="mhm-pill">
+          {restingCount} worker{restingCount !== 1 ? 's' : ''} resting
+        </span>
       </div>
 
       <div className="mhm-section">
@@ -101,8 +116,10 @@ export default function MuseumHomeMobile() {
       <p className="mhm-donate-cta">DONATE BELOW ↓</p>
 
       <div className="mhm-bed">
-        <img src={bedIllustration} alt="" />
+        <img src={HandAnimPic} alt="" />
       </div>
+
+      <div className="section-spacer"></div>
 
       <section id="mhm-donate" className="mhm-donate-section">
         <h2 className="mhm-donate-heading">Donate</h2>

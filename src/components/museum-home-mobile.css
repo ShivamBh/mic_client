@@ -1,15 +1,15 @@
 .mhm-root {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 17px;
-  line-height: 1.6;
+  line-height: 1.35;
   color: #000;
   background: #eeecec;
   min-height: 100vh;
 }
 
-/* ── First screen — header + hero + pill fill exactly one viewport ── */
+/* ── First screen — header + hero fill viewport minus the pill row ── */
 .mhm-first-screen {
-  height: 100vh;
+  height: calc(100vh - 64px);
   display: flex;
   flex-direction: column;
 }
@@ -36,22 +36,31 @@
 
 .mhm-scroll-hint {
   position: absolute;
-  bottom: 24px;
   left: 24px;
-  font-size: 17px;
+  width: 14px;
+  height: auto;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
-/* ── Pill row — at bottom of first screen, sticks to top on scroll ── */
-/* Higher z-index + white background covers the scrolled-away header */
+.mhm-scroll-hint--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Pill row — sits below first screen, sticks to top on scroll ── */
+/* Once the user scrolls past the first screen the pill locks at top:0,
+   covering the space the MICROREST header occupied.               */
 .mhm-pill-row {
   position: sticky;
   top: 0;
   z-index: 20;
+  height: 64px;
   background: #eeecec;
   padding: 12px 16px;
   display: flex;
   justify-content: center;
-  flex-shrink: 0;
+  align-items: center;
 }
 
 .mhm-pill {
@@ -70,7 +79,7 @@
 
 .mhm-stats {
   font-size: 17px;
-  line-height: 1.6;
+  line-height: 1.35;
   margin: 0 0 16px;
 }
 
@@ -101,25 +110,31 @@
 
 /* ── Hero text ── */
 .mhm-hero-text {
-  margin-top: 17vh;
+  margin-top: 25vh;
   padding: 32px 24px;
   font-size: 17px;
-  line-height: 1.8;
+  line-height: 1.35;
   white-space: pre-line;
-  border-top: 1px solid #000;
 }
 
 /* ── Bed illustration ── */
 .mhm-bed {
   margin: 35vh 0;
-  padding: 0 16px 32px;
+  padding: 0 16px 24;
   display: flex;
   justify-content: center;
+}
+
+.section-spacer {
+  margin: 0 auto;
+  width: calc(100% - 48px);
+  border-bottom: 1px dashed black;
 }
 
 .mhm-bed img {
   width: 180px;
   height: auto;
+  margin-left: -40px;
 }
 
 /* ── Donate CTA link ── */
@@ -136,7 +151,7 @@
 .mhm-donate-section {
   margin-top: 27vh;
   padding: 48px 24px;
-  border-top: 1px dashed black;
+  /* border-top: 1px dashed black; */
 }
 
 .mhm-donate-heading {
@@ -147,7 +162,7 @@
 
 .mhm-donate-desc {
   font-size: 17px;
-  line-height: 1.8;
+  line-height: 1.35;
   margin: 0 0 32px;
 }
 
@@ -157,20 +172,30 @@
 
 /* ── Footer ── */
 .mhm-footer {
-  margin-top: 17vh;
   padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .mhm-footer-slow {
   font-style: italic;
-  font-size: 17px;
-  line-height: 1.6;
-  margin: 0 0 8px;
+  font-size: 14px;
+  line-height: 1.35;
+  margin-top: 17vh;
+  margin-bottom: 0;
+  background-color: #dcdada;
+  border-radius: 100px;
+  width: calc(100% - 12px);
+  padding: 24px;
+  text-align: center;
+  align-self: center;
 }
 
 .mhm-footer-credit {
   font-size: 17px;
-  margin: 0 0 24px;
+  margin: 24px 0 25.5vh;
+  width: 100%;
 }
 
 .mhm-footer-credit a {
@@ -182,6 +207,7 @@
   justify-content: space-between;
   align-items: flex-end;
   font-size: 17px;
+  width: 100%;
 }
 
 .mhm-hand-icon {
