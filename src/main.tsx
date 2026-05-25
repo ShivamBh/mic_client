@@ -15,11 +15,17 @@ import PaymentSuccess from './components/PaymentSuccess.tsx';
 import { SpaceProvider, SpacesProvider } from '@ably/spaces/dist/mjs/react/index';
 import ArchiveHome from './components/ArchiveHome.tsx';
 import MuseumHomeMobile from './components/MuseumHomeMobile.tsx';
+import { useMediaQuery } from 'react-responsive';
+
+function HomeRoute() {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  return isMobile ? <MuseumHomeMobile /> : <MuseumHome />;
+}
 
 const router = createBrowserRouter([
   {
     path: '/',
-    Component: MuseumHome,
+    Component: HomeRoute,
   },
   {
     path: '/donate',
