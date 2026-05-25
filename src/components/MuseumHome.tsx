@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 const API_URL = import.meta.env.VITE_API_URL as string;
 
-const SCROLL_SPEED = 0.3;
+const SCROLL_SPEED = 0.33;
 const EASE_FACTOR = 0.1;
 
 function MuseumHome() {
