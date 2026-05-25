@@ -227,7 +227,7 @@ function HomeUI({
             <div className="checkout-form">
               <DonatePage />
             </div>
-            <div className="scroll-icon">
+            <div className="scroll-icon last-icon">
               <img className="down-arrow" src={DownArrow} alt="" />
             </div>
             <div className="sign-off">
