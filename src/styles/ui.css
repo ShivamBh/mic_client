@@ -54,12 +54,12 @@
 .sitename {
   font-size: 19px;
   padding-left: 44px;
-  padding-bottom: 190px;
+  padding-bottom: 180px;
   padding-top: 4px;
 }
 
 .hero-text {
-  width: 70%;
+  width: 60%;
   max-width: 600px;
   line-height: 1.3;
   font-size: 19px;
