@@ -89,18 +89,29 @@ export default function MuseumHomeMobile() {
         </header>
 
         <div className="mhm-hero"></div>
+
+        <div className="mhm-pill-row">
+          <img
+            src={DownArrow}
+            alt=""
+            className={`mhm-scroll-hint${pillSticky ? ' mhm-scroll-hint--hidden' : ''}`}
+          />
+          <span className="mhm-pill">
+            {restingCount} worker{restingCount !== 1 ? 's' : ''} resting
+          </span>
+        </div>
       </div>
 
-      <div className="mhm-pill-row">
-        <img
-          src={DownArrow}
-          alt=""
-          className={`mhm-scroll-hint${pillSticky ? ' mhm-scroll-hint--hidden' : ''}`}
-        />
-        <span className="mhm-pill">
-          {restingCount} worker{restingCount !== 1 ? 's' : ''} resting
-        </span>
-      </div>
+      {pillSticky && (
+        <div className="mhm-pill-row mhm-pill-row--fixed">
+          <span className="mhm-pill">
+            {restingCount} worker{restingCount !== 1 ? 's' : ''} resting
+          </span>
+        </div>
+      )}
+
+      <p className="mhm-hero-text">{HERO_TEXT}</p>
+      <p className="mhm-donate-cta">DONATE BELOW ↓</p>
 
       <div className="mhm-section">
         <p className="mhm-stats">
@@ -112,33 +123,24 @@ export default function MuseumHomeMobile() {
         </div>
       </div>
 
-      <p className="mhm-hero-text">{HERO_TEXT}</p>
-      <p className="mhm-donate-cta">DONATE BELOW ↓</p>
-
       <div className="mhm-bed">
         <img src={HandAnimPic} alt="" />
       </div>
 
-      <div className="section-spacer"></div>
-
       <section id="mhm-donate" className="mhm-donate-section">
         <h2 className="mhm-donate-heading">Donate</h2>
         <p className="mhm-donate-desc">
-          $0.25 buys 10 minutes of rest. Any amount is fine. There is no tax receipt — this isn't a
+          25 cents buys 10 minutes of rest. There is no tax receipt — this isn't a
           nonprofit, it's an art project. You will receive a signed certificate of donation.
           <br />
           <br />
-          For questions contact <a href="mailto:hello@micro.rest">hello@micro.rest</a>
-          <br />
-          Funds are disbursed to workers daily.
+          Funds are disbursed to workers weekly. For questions about donations contact{' '}
+          <a href="mailto:studio@tarakelton.com">studio@tarakelton.com</a>.
         </p>
         <DonatePage />
       </section>
 
       <footer className="mhm-footer">
-        <p className="mhm-footer-slow">
-          This is a resting interface — buttons, scrollbars, all respond at a slow, laboured pace.
-        </p>
         <p className="mhm-footer-credit">
           Microrest is a project by{' '}
           <a href="https://tarakelton.com" target="_blank" rel="noreferrer">

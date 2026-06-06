@@ -18,7 +18,7 @@ interface LiveFeedProps {
   className?: string;
 }
 
-function formatEventLine(event: TaskEvent): any {
+function formatEventLine(event: TaskEvent, isMobile: boolean = false): any {
   const location = event.country ? ` in ${event.country}` : '';
   const time = new Date(event.created_at).toLocaleTimeString(undefined, {
     hour: '2-digit',
@@ -29,7 +29,8 @@ function formatEventLine(event: TaskEvent): any {
     event.state === 'accepted' ? 'has accepted the task' :
     event.state === 'resting'  ? 'is resting' :
                                  'has completed the task';
-  return <p>{`${time}`}<span style={{padding: "0 28px"}}></span> {`A human${location} ${action}.`}</p>;
+  const spacing = isMobile ? {padding: "0 6px"} : {padding: "0 28px"};
+  return <p>{`${time}`}<span style={spacing}></span> {`A human${location} ${action}.`}</p>;
 }
 
 export default function LiveFeed({ apiUrl, pageSize, className }: LiveFeedProps) {
@@ -114,7 +115,7 @@ export default function LiveFeed({ apiUrl, pageSize, className }: LiveFeedProps)
               className="feed-line"
               style={{ opacity, transition: 'opacity 0.4s ease' }}
             >
-              {formatEventLine(event)}
+              {formatEventLine(event, true)}
             </p>
           );
         })}
