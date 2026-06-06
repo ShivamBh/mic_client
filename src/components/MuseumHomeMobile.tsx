@@ -130,8 +130,8 @@ export default function MuseumHomeMobile() {
       <section id="mhm-donate" className="mhm-donate-section">
         <h2 className="mhm-donate-heading">Donate</h2>
         <p className="mhm-donate-desc">
-          25 cents buys 10 minutes of rest. There is no tax receipt — this isn't a
-          nonprofit, it's an art project. You will receive a signed certificate of donation.
+          25 cents buys 10 minutes of rest. There is no tax receipt — this isn't a nonprofit, it's
+          an art project. You will receive a signed certificate of donation.
           <br />
           <br />
           Funds are disbursed to workers weekly. For questions about donations contact{' '}
@@ -141,15 +141,20 @@ export default function MuseumHomeMobile() {
       </section>
 
       <footer className="mhm-footer">
-        <p className="mhm-footer-credit">
-          Microrest is a project by{' '}
-          <a href="https://tarakelton.com" target="_blank" rel="noreferrer">
-            Tara Kelton
-          </a>
-        </p>
         <div className="mhm-footer-bottom">
           <img src={handIcon} alt="" className="mhm-hand-icon" />
-          <span>© Tara Kelton 2026</span>
+          <span>
+            ©{' '}
+            <a
+              href="https://tarakelton.com"
+              target="_blank"
+              rel="noreferrer"
+              className="credit-link"
+            >
+              Tara Kelton
+            </a>{' '}
+            2026
+          </span>
         </div>
       </footer>
     </div>

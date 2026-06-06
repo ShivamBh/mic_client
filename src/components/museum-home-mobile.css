@@ -241,3 +241,10 @@
   width: 54px;
   height: auto;
 }
+
+.credit-link,
+.credit-link:visited,
+.credit-link:hover {
+  color: black;
+  text-underline-offset: 3px;
+}
