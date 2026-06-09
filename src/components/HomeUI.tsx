@@ -219,9 +219,8 @@ function HomeUI({
                 it's an art project. You will receive a signed certificate of donation.
               </p>
               <p>
-                For questions about donations contact
-                <a href="mailto:someone@example.com"> studio@tarakelton.com</a>. Funds are disbursed
-                to workers daily.
+                Funds are disbursed to workers weekly. For questions about donations contact
+                <a href="mailto:studio@tarakelton.com"> studio@tarakelton.com</a>.
               </p>
             </div>
             <div className="checkout-form">
@@ -232,7 +231,7 @@ function HomeUI({
             </div>
             <div className="sign-off">
               <i>
-                Microrest is a project by artist <a href="www.tarakelton.com">Tara Kelton</a>
+                Microrest is a project by <a href="www.tarakelton.com">Tara Kelton</a>
               </i>
             </div>
           </section>

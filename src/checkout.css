@@ -77,6 +77,10 @@
   margin-top: 60px;
 }
 
+.donation-wrapper > .subheading {
+  margin: 0;
+}
+
 .donation-amount {
   /* display: flex;
   flex-direction: column;
