@@ -218,3 +218,32 @@
   width: calc(50% - 24px);
   margin-top: 14px;
 }
+
+.feed-line-spacing {
+  padding: 0 24px;
+}
+
+@media screen and (max-width: 768px) {
+  .donation {
+    margin: 0 16px;
+    padding-top: 200px;
+  }
+
+  .hand-animation {
+    width: 100%;
+  }
+
+  .hand-anim {
+    /* margin-left: 90px; */
+    margin: 0 auto;
+    margin-top: 20vh;
+    height: 280px;
+    width: 280px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .feed-line-spacing {
+    padding: 0 6px;
+  }
+}

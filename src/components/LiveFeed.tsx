@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useAbly } from 'ably/react';
 import type * as Ably from 'ably';
-import "../styles/ui.css";
-
+import '../styles/ui.css';
 
 interface TaskEvent {
   id: string;
@@ -26,11 +25,18 @@ function formatEventLine(event: TaskEvent, isMobile: boolean = false): any {
     hour12: false,
   });
   const action =
-    event.state === 'accepted' ? 'has accepted the task' :
-    event.state === 'resting'  ? 'is resting' :
-                                 'has completed the task';
-  const spacing = isMobile ? {padding: "0 6px"} : {padding: "0 28px"};
-  return <p>{`${time}`}<span style={spacing}></span> {`A human${location} ${action}.`}</p>;
+    event.state === 'accepted'
+      ? 'has accepted the task'
+      : event.state === 'resting'
+        ? 'is resting'
+        : 'has completed the task';
+
+  return (
+    <p>
+      {`${time}`}
+      <span className=" feed-line-spacing"></span> {`A human${location} ${action}.`}
+    </p>
+  );
 }
 
 export default function LiveFeed({ apiUrl, pageSize, className }: LiveFeedProps) {
@@ -52,9 +58,9 @@ export default function LiveFeed({ apiUrl, pageSize, className }: LiveFeedProps)
       if (!res.ok) return;
       const data: TaskEvent[] = await res.json();
       if (before) {
-        setEvents(prev => {
-          const ids = new Set(prev.map(e => e.id));
-          return [...prev, ...data.filter(e => !ids.has(e.id))];
+        setEvents((prev) => {
+          const ids = new Set(prev.map((e) => e.id));
+          return [...prev, ...data.filter((e) => !ids.has(e.id))];
         });
       } else {
         setEvents(data);
@@ -78,14 +84,16 @@ export default function LiveFeed({ apiUrl, pageSize, className }: LiveFeedProps)
     const handler = (msg: Ably.InboundMessage) => {
       const event = msg.data as TaskEvent;
       if (!event?.id || !event?.state) return;
-      setEvents(prev => {
-        if (prev.some(e => e.id === event.id)) return prev;
+      setEvents((prev) => {
+        if (prev.some((e) => e.id === event.id)) return prev;
         const next = [event, ...prev];
         return isMobile ? next.slice(0, limit) : next;
       });
     };
     channel.subscribe('task_event', handler);
-    return () => { channel.unsubscribe('task_event', handler); };
+    return () => {
+      channel.unsubscribe('task_event', handler);
+    };
   }, [ably, isMobile, limit]);
 
   // Infinite scroll sentinel (desktop only)
@@ -125,7 +133,7 @@ export default function LiveFeed({ apiUrl, pageSize, className }: LiveFeedProps)
 
   return (
     <div className={`live-feed live-feed-desktop ${className ?? ''}`}>
-      {events.map(event => (
+      {events.map((event) => (
         <p key={event.id} className="feed-line">
           {formatEventLine(event)}
         </p>

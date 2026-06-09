@@ -16,6 +16,7 @@ import { SpaceProvider, SpacesProvider } from '@ably/spaces/dist/mjs/react/index
 import ArchiveHome from './components/ArchiveHome.tsx';
 import MuseumHomeMobile from './components/MuseumHomeMobile.tsx';
 import { useMediaQuery } from 'react-responsive';
+import DonateMobile from './components/DonateMobile.tsx';
 
 function HomeRoute() {
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -29,11 +30,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/donate',
-    Component: DonatePage,
-  },
-  {
-    path: '/donate/success',
-    Component: PaymentSuccess,
+    Component: DonateMobile,
   },
   {
     path: '/archive',

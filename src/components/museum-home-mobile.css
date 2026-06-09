@@ -9,7 +9,7 @@
 
 /* ── First screen — header + hero fill viewport minus the pill row ── */
 .mhm-first-screen {
-  min-height: 100vh;
+  min-height: calc(100vh - 96px);
   display: flex;
   flex-direction: column;
 }
@@ -20,6 +20,7 @@
   padding: 16px;
   text-align: center;
   flex-shrink: 0;
+  margin-top: 16px;
 }
 
 .mhm-logo {
@@ -29,7 +30,7 @@
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   border-radius: 999px;
-  padding: 6px 16px;
+  padding: 12px 24px;
 }
 
 .mhm-logo::before {
@@ -92,6 +93,7 @@
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
+  padding: 12px 24px;
 }
 
 .mhm-pill::before {
@@ -165,13 +167,17 @@
 }
 
 /* ── Donate CTA link ── */
-.mhm-donate-cta {
+.mhm-donate-cta a,
+.mhm-donate-cta a:hover,
+.mhm-donate-cta a:link,
+.mhm-donate-cta a:visited {
   display: block;
   font-size: 17px;
   font-family: 'IBM Plex Mono', monospace;
   margin-left: 24px;
   color: #000;
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* ── Donate section ── */

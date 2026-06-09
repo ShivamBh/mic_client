@@ -111,7 +111,9 @@ export default function MuseumHomeMobile() {
       )}
 
       <p className="mhm-hero-text">{HERO_TEXT}</p>
-      <p className="mhm-donate-cta">DONATE BELOW ↓</p>
+      <p className="mhm-donate-cta">
+        <a href="/mdonate">DONATE</a>
+      </p>
 
       <div className="mhm-section">
         <p className="mhm-stats">
@@ -119,26 +121,9 @@ export default function MuseumHomeMobile() {
         </p>
         <h2 className="mhm-feed-heading">Log Data</h2>
         <div className="mhm-feed-wrapper">
-          <LiveFeed apiUrl={API_URL} pageSize={16} />
+          <LiveFeed apiUrl={API_URL} />
         </div>
       </div>
-
-      <div className="mhm-bed">
-        <img src={HandAnimPic} alt="" />
-      </div>
-
-      <section id="mhm-donate" className="mhm-donate-section">
-        <h2 className="mhm-donate-heading">Donate</h2>
-        <p className="mhm-donate-desc">
-          25 cents buys 10 minutes of rest. There is no tax receipt — this isn't a nonprofit, it's
-          an art project. You will receive a signed certificate of donation.
-          <br />
-          <br />
-          Funds are disbursed to workers weekly. For questions about donations contact{' '}
-          <a href="mailto:studio@tarakelton.com">studio@tarakelton.com</a>.
-        </p>
-        <DonatePage />
-      </section>
 
       <footer className="mhm-footer">
         <div className="mhm-footer-bottom">
