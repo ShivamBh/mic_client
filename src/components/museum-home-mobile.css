@@ -7,9 +7,9 @@
   min-height: 100vh;
 }
 
-/* ── First screen — header + hero fill viewport minus the pill row ── */
+/* ── First screen — header + hero fill exactly the viewport minus the pill row ── */
 .mhm-first-screen {
-  min-height: calc(100vh - 96px);
+  height: calc(100vh - 156px);
   display: flex;
   flex-direction: column;
 }
@@ -48,6 +48,7 @@
 .mhm-hero {
   flex: 1;
   position: relative;
+  overflow: hidden;
 }
 
 .mhm-scroll-hint {
@@ -68,21 +69,15 @@
 /* Once the user scrolls past the first screen the pill locks at top:0,
    covering the space the MICROREST header occupied.               */
 .mhm-pill-row {
-  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 20;
   height: 64px;
   background: #eeecec;
   padding: 12px 16px;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.mhm-pill-row--fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 20;
 }
 
 .mhm-pill {

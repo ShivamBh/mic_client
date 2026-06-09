@@ -30,14 +30,15 @@ export default function MuseumHomeMobile() {
   const [completedCount, setCompletedCount] = useState(0);
   const restingCountRef = useRef(0);
   const firstScreenRef = useRef<HTMLDivElement>(null);
-  const [pillSticky, setPillSticky] = useState(false);
+  const [arrowHidden, setArrowHidden] = useState(false);
 
   useEffect(() => {
     const el = firstScreenRef.current;
     if (!el) return;
-    const observer = new IntersectionObserver(([entry]) => setPillSticky(!entry.isIntersecting), {
-      threshold: 0,
-    });
+    const observer = new IntersectionObserver(
+      ([entry]) => setArrowHidden(!entry.isIntersecting),
+      { threshold: 0 },
+    );
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
@@ -89,26 +90,14 @@ export default function MuseumHomeMobile() {
         </header>
 
         <div className="mhm-hero"></div>
-
-        <div className="mhm-pill-row">
-          <img
-            src={DownArrow}
-            alt=""
-            className={`mhm-scroll-hint${pillSticky ? ' mhm-scroll-hint--hidden' : ''}`}
-          />
-          <span className="mhm-pill">
-            {restingCount} worker{restingCount !== 1 ? 's' : ''} resting
-          </span>
-        </div>
       </div>
 
-      {pillSticky && (
-        <div className="mhm-pill-row mhm-pill-row--fixed">
-          <span className="mhm-pill">
-            {restingCount} worker{restingCount !== 1 ? 's' : ''} resting
-          </span>
-        </div>
-      )}
+      <div className="mhm-pill-row">
+        <img src={DownArrow} alt="" className={`mhm-scroll-hint${arrowHidden ? ' mhm-scroll-hint--hidden' : ''}`} />
+        <span className="mhm-pill">
+          {restingCount} worker{restingCount !== 1 ? 's' : ''} resting
+        </span>
+      </div>
 
       <p className="mhm-hero-text">{HERO_TEXT}</p>
       <p className="mhm-donate-cta">
