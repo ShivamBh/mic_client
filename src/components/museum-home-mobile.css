@@ -9,7 +9,7 @@
 
 /* ── First screen — header + hero fill exactly the viewport minus the pill row ── */
 .mhm-first-screen {
-  height: calc(100vh - 156px);
+  height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
 }
@@ -20,15 +20,15 @@
   padding: 16px;
   text-align: center;
   flex-shrink: 0;
-  margin-top: 16px;
+  margin-top: 8px;
 }
 
 .mhm-logo {
   font-size: 17px;
   letter-spacing: 0.02em;
   background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   border-radius: 999px;
   padding: 16px 28px;
   position: relative;
@@ -55,7 +55,7 @@
 .mhm-scroll-hint {
   position: absolute;
   left: 28px;
-  width: 16px;
+  width: 19px;
   height: auto;
   opacity: 1;
   transition: opacity 0.3s ease;
@@ -86,8 +86,8 @@
   border-radius: 999px;
   white-space: nowrap;
   background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   padding: 16px 28px;
 }
 
