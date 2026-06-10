@@ -104,7 +104,9 @@ export default function MuseumHomeMobile() {
 
       <p className="mhm-hero-text">{HERO_TEXT}</p>
       <p className="mhm-donate-cta">
-        <a href="/donate">DONATE</a>
+        <a href="/donate" target="_blank">
+          DONATE
+        </a>
       </p>
 
       <div className="mhm-section">

@@ -246,6 +246,7 @@
     width: 280px;
     object-fit: contain;
     display: block;
+    margin-left: 8px;
   }
 
   .feed-line-spacing {
