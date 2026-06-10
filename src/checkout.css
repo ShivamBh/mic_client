@@ -93,6 +93,7 @@
 .donation-amount > input {
   border: none;
   border-bottom: 1px solid black;
+  margin-top: 8px;
 }
 
 .donation-input {
