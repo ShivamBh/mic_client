@@ -30,7 +30,8 @@
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   border-radius: 999px;
-  padding: 12px 24px;
+  padding: 16px 28px;
+  position: relative;
 }
 
 .mhm-logo::before {
@@ -83,12 +84,11 @@
 .mhm-pill {
   font-size: 17px;
   border-radius: 999px;
-  padding: 6px 16px;
   white-space: nowrap;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
-  padding: 12px 24px;
+  padding: 16px 28px;
 }
 
 .mhm-pill::before {
