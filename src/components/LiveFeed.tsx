@@ -17,6 +17,16 @@ interface LiveFeedProps {
   className?: string;
 }
 
+const getUpdatedLocation = (loc: string) => {
+  if (loc === 'United States of America') {
+    return 'USA';
+  } else if (loc === 'United Kingdom') {
+    return 'UK';
+  } else {
+    return loc;
+  }
+};
+
 function formatEventLine(event: TaskEvent, isMobile: boolean = false): any {
   const location = event.country ? ` in ${event.country}` : '';
   const time = new Date(event.created_at).toLocaleTimeString(undefined, {
@@ -26,15 +36,16 @@ function formatEventLine(event: TaskEvent, isMobile: boolean = false): any {
   });
   const action =
     event.state === 'accepted'
-      ? 'has accepted the task'
+      ? 'accepted the task'
       : event.state === 'resting'
         ? 'is resting'
-        : 'has completed the task';
+        : 'completed the task';
 
   return (
     <p>
       {`${time}`}
-      <span className=" feed-line-spacing"></span> {`A human${location} ${action}.`}
+      <span className=" feed-line-spacing"></span>{' '}
+      {`A human${getUpdatedLocation(location)} ${action}.`}
     </p>
   );
 }
@@ -116,13 +127,8 @@ export default function LiveFeed({ apiUrl, pageSize, className }: LiveFeedProps)
     return (
       <div className={`live-feed live-feed-mobile ${className ?? ''}`}>
         {events.map((event, i) => {
-          const opacity = i === events.length - 1 ? 0.15 : i === events.length - 2 ? 0.4 : 1;
           return (
-            <p
-              key={event.id}
-              className="feed-line"
-              style={{ opacity, transition: 'opacity 0.4s ease' }}
-            >
+            <p key={event.id} className="feed-line">
               {formatEventLine(event, true)}
             </p>
           );

@@ -35,10 +35,9 @@ export default function MuseumHomeMobile() {
   useEffect(() => {
     const el = firstScreenRef.current;
     if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setArrowHidden(!entry.isIntersecting),
-      { threshold: 0 },
-    );
+    const observer = new IntersectionObserver(([entry]) => setArrowHidden(!entry.isIntersecting), {
+      threshold: 0,
+    });
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
@@ -93,7 +92,11 @@ export default function MuseumHomeMobile() {
       </div>
 
       <div className="mhm-pill-row">
-        <img src={DownArrow} alt="" className={`mhm-scroll-hint${arrowHidden ? ' mhm-scroll-hint--hidden' : ''}`} />
+        <img
+          src={DownArrow}
+          alt=""
+          className={`mhm-scroll-hint${arrowHidden ? ' mhm-scroll-hint--hidden' : ''}`}
+        />
         <span className="mhm-pill">
           {restingCount} worker{restingCount !== 1 ? 's' : ''} resting
         </span>
@@ -101,7 +104,7 @@ export default function MuseumHomeMobile() {
 
       <p className="mhm-hero-text">{HERO_TEXT}</p>
       <p className="mhm-donate-cta">
-        <a href="/mdonate">DONATE</a>
+        <a href="/donate">DONATE</a>
       </p>
 
       <div className="mhm-section">
