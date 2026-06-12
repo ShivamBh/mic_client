@@ -12,7 +12,7 @@ const CheckoutForm = () => {
   const [clientSecret, setClientSecret] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [succeeded, setSucceeded] = useState(true);
+  const [succeeded, setSucceeded] = useState(false);
 
   const handleError = (error: any) => {
     setLoading(false);
@@ -133,21 +133,26 @@ const CheckoutForm = () => {
         </div>
 
         <div className="submit-wrapper">
-          <button className="payment-submit-mobile" type="submit" disabled={!stripe || loading}>
-            Pay
-          </button>
-          <button className="payment-submit" type="submit" disabled={!stripe || loading}>
-            Pay
-          </button>
+          {!succeeded ? (
+            <>
+              <button className="payment-submit-mobile" type="submit" disabled={!stripe || loading}>
+                Pay
+              </button>
+              <button className="payment-submit" type="submit" disabled={!stripe || loading}>
+                Pay
+              </button>
+            </>
+          ) : (
+            ''
+          )}
           {errorMessage && <div className="error">{errorMessage}</div>}
+          {succeeded ? (
+            <div className="checkout-success">
+              <p>{donationSummary(amount)}</p>
+            </div>
+          ) : null}
         </div>
       </form>
-
-      {succeeded ? (
-        <div className="checkout-success">
-          <p>{donationSummary(amount)}</p>
-        </div>
-      ) : null}
     </div>
   );
 };
