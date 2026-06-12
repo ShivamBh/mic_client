@@ -111,7 +111,8 @@ export default function MuseumHomeMobile() {
 
       <div className="mhm-section">
         <p className="mhm-stats">
-          {completedCount} workers have trained no data for {convertSeconds(totalSecs)}
+          {completedCount} workers have trained no data for{' '}
+          {totalSecs ? convertSeconds(totalSecs) : '0 days, 0 hours and 0 seconds'}
         </p>
         <h2 className="mhm-feed-heading">Log Data</h2>
         <div className="mhm-feed-wrapper">

@@ -240,7 +240,9 @@ function HomeUI({
           <div className="rest-stats">
             <p>
               {restData.count} workers have stopped training AI for{' '}
-              {convertSeconds(restData.duration)}
+              {restData.duration > 0
+                ? convertSeconds(restData.duration)
+                : '0 days, 0 hours and 0 seconds'}
             </p>
             <p className="feed-heading">Log Data</p>
           </div>
