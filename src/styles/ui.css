@@ -131,7 +131,7 @@
 }
 
 .sign-off {
-  padding-top: 32px;
+  padding-top: 54px;
   padding-bottom: 80px;
 }
 
@@ -256,5 +256,10 @@
 
   .feed-line-spacing {
     padding: 0 0px;
+  }
+
+  .checkout-success {
+    width: 100%;
+    height: auto;
   }
 }

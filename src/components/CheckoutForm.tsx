@@ -12,7 +12,7 @@ const CheckoutForm = () => {
   const [clientSecret, setClientSecret] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [succeeded, setSucceeded] = useState(false);
+  const [succeeded, setSucceeded] = useState(true);
 
   const handleError = (error: any) => {
     setLoading(false);
@@ -78,7 +78,6 @@ const CheckoutForm = () => {
     <div className="form-container">
       <form onSubmit={handleSubmit} className="checkout-form">
         <div className="checkout-wrapper">
-
           {/* Donation amount — mobile */}
           <div className="donation-input-mobile">
             <p>Donation amount</p>
@@ -131,7 +130,6 @@ const CheckoutForm = () => {
               placeholder=" "
             />
           </div>
-
         </div>
 
         <div className="submit-wrapper">
