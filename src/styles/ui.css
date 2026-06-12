@@ -230,8 +230,10 @@
   }
 
   .donation {
-    margin: 0 16px;
     padding-top: 72px;
+    font-size: 17px;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
   .donate-heading h2 {

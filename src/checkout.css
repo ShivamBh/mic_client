@@ -311,7 +311,7 @@ input[type='number'] {
     font-weight: 400;
     padding: 18px 40px;
     font-family: 'IBM Plex Mono', monospace;
-    margin-top: 70px;
+    margin-top: 54px;
     border: 1px solid black;
     border-radius: 0px;
     box-shadow: 4px 4px 2px 0px rgba(0, 0, 0, 1);
@@ -338,6 +338,10 @@ input[type='number'] {
     line-height: 1.25;
     font-size: 14px;
     margin-top: -2px;
+  }
+
+  .email-wrapper > input {
+    margin-top: 36px;
   }
 }
 

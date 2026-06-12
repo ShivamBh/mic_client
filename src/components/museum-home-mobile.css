@@ -72,7 +72,7 @@
    covering the space the MICROREST header occupied.               */
 .mhm-pill-row {
   position: sticky;
-  top: 0;
+  top: 6px;
   z-index: 20;
   height: 64px;
   background: #eeecec;
