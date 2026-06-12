@@ -63,6 +63,7 @@ function DonatePage() {
         <Elements
           stripe={stripePromise}
           options={{
+            paymentMethodTypes: ['card'],
             fonts: [
               {
                 cssSrc:
