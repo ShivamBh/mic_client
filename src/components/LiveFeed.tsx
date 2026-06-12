@@ -14,7 +14,7 @@ interface TaskEvent {
 
 interface LiveFeedProps {
   apiUrl: string;
-  pageSize?: number; // when set, activates mobile mode (top-N + fade)
+  pageSize?: number;
   className?: string;
 }
 
@@ -72,7 +72,6 @@ export default function LiveFeed({ apiUrl, pageSize, className }: LiveFeedProps)
       }
       if (data.length < limit) setHasMore(false);
     } catch {
-      // fail silently — feed will populate via real-time
     } finally {
       setLoading(false);
     }
@@ -83,7 +82,6 @@ export default function LiveFeed({ apiUrl, pageSize, className }: LiveFeedProps)
     fetchEvents();
   }, []);
 
-  // Real-time: prepend incoming task_event messages
   useEffect(() => {
     const channel = ably.channels.get('microrest');
     const handler = (msg: Ably.InboundMessage) => {
@@ -92,7 +90,7 @@ export default function LiveFeed({ apiUrl, pageSize, className }: LiveFeedProps)
       setEvents((prev) => {
         if (prev.some((e) => e.id === event.id)) return prev;
         const next = [event, ...prev];
-        return isMobile ? next.slice(0, limit) : next;
+        return next;
       });
     };
     channel.subscribe('task_event', handler);
@@ -101,9 +99,8 @@ export default function LiveFeed({ apiUrl, pageSize, className }: LiveFeedProps)
     };
   }, [ably, isMobile, limit]);
 
-  // Infinite scroll sentinel (desktop only)
   useEffect(() => {
-    if (isMobile || !sentinelRef.current) return;
+    if (!sentinelRef.current) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && hasMore && !loading) {
@@ -120,13 +117,16 @@ export default function LiveFeed({ apiUrl, pageSize, className }: LiveFeedProps)
   if (isMobile) {
     return (
       <div className={`live-feed live-feed-mobile ${className ?? ''}`}>
-        {events.map((event, i) => {
-          return (
-            <p key={event.id} className="feed-line">
-              {formatEventLine(event, true)}
-            </p>
-          );
-        })}
+        {events.map((event) => (
+          <p key={event.id} className="feed-line">
+            {formatEventLine(event, true)}
+          </p>
+        ))}
+        {hasMore && (
+          <div ref={sentinelRef} className="feed-sentinel">
+            {loading && <span>loading…</span>}
+          </div>
+        )}
       </div>
     );
   }
