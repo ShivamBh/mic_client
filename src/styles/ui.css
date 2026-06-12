@@ -226,17 +226,16 @@
 
 @media screen and (max-width: 768px) {
   .feed-line {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .donation {
     margin: 0 16px;
-    padding-top: 40px;
+    padding-top: 72px;
   }
 
   .donate-heading h2 {
     margin-bottom: 30px;
-    text-align: center;
   }
 
   .hand-animation {
@@ -246,12 +245,11 @@
   .hand-anim {
     /* margin-left: 90px; */
     margin: 0 auto;
-    margin-top: 40px;
-    height: 280px;
-    width: 280px;
+    margin-top: 80px;
+    height: 240px;
+    width: 240px;
     object-fit: contain;
     display: block;
-    margin-left: 8px;
   }
 
   .feed-line-spacing {
