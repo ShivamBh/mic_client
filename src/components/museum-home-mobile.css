@@ -22,26 +22,21 @@
   flex-shrink: 0;
   margin-top: 6px;
 }
-
 .mhm-logo {
+  position: relative;
+  display: inline-block;
   font-size: 17px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-radius: 999px;
   padding: 16px 28px;
-  position: relative;
   line-height: 1;
+  box-shadow: 0 0 12px 6px rgba(255, 255, 255, 0.6);
 }
 
 .mhm-logo::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: white;
-  border-radius: 40px;
-  filter: blur(3px);
-  z-index: -1;
+  display: none;
 }
 
 /* ── Hero canvas — fills remaining space between header and pill ── */
@@ -83,6 +78,7 @@
 }
 
 .mhm-pill {
+  position: relative;
   font-size: 17px;
   border-radius: 999px;
   white-space: nowrap;
