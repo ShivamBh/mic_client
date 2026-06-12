@@ -134,10 +134,10 @@ const CheckoutForm = () => {
 
         <div className="submit-wrapper">
           <button className="payment-submit-mobile" type="submit" disabled={!stripe || loading}>
-            Pay {amount ? `$${amount}` : ''}
+            Pay
           </button>
           <button className="payment-submit" type="submit" disabled={!stripe || loading}>
-            Pay {amount ? `$${amount}` : ''}
+            Pay
           </button>
           {errorMessage && <div className="error">{errorMessage}</div>}
         </div>

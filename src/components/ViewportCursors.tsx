@@ -2,16 +2,18 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useSpace } from '@ably/spaces/dist/mjs/react';
 import type { CursorUpdate, SpaceMember } from '@ably/spaces';
+import { useMediaQuery } from 'react-responsive';
 import cursorWhiteBg from '../assets/cursor/cursor_whitebg.svg';
 
 export default function ViewportCursors() {
   const { space } = useSpace();
   const [cursors, setCursors] = useState<Record<string, CursorUpdate>>({});
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const cursorSize = isMobile ? 56 : 84;
 
   useEffect(() => {
     if (!space) return;
 
-    // Seed initial positions from Ably channel history (workers already connected)
     space.cursors
       .getAll()
       .then((initial) => {
@@ -59,8 +61,8 @@ export default function ViewportCursors() {
           key={cursor.connectionId}
           src={cursorWhiteBg}
           alt=""
-          width={84}
-          height={84}
+          width={cursorSize}
+          height={cursorSize}
           style={{ position: 'fixed', transform: 'translate(-12px, -8px)' }}
           animate={{
             left: `${cursor.position.x * 100}vw`,
