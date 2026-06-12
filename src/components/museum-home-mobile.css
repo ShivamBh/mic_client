@@ -129,18 +129,6 @@
   overflow: hidden;
 }
 
-/* Fade gradient masks the bottom of the truncated feed */
-.mhm-feed-wrapper::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background: linear-gradient(to bottom, transparent, #eeecec);
-  pointer-events: none;
-}
-
 /* ── Hero text ── */
 .mhm-hero-text {
   margin-top: 25vh;

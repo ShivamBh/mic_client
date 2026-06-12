@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useAbly } from 'ably/react';
 import type * as Ably from 'ably';
 import '../styles/ui.css';
+import { useMediaQuery } from 'react-responsive';
 
 interface TaskEvent {
   id: string;
@@ -17,16 +18,6 @@ interface LiveFeedProps {
   className?: string;
 }
 
-const getUpdatedLocation = (loc: string) => {
-  if (loc === 'United States of America') {
-    return 'USA';
-  } else if (loc === 'United Kingdom') {
-    return 'UK';
-  } else {
-    return loc;
-  }
-};
-
 function formatEventLine(event: TaskEvent, isMobile: boolean = false): any {
   const location = event.country ? ` in ${event.country}` : '';
   const time = new Date(event.created_at).toLocaleTimeString(undefined, {
@@ -36,22 +27,25 @@ function formatEventLine(event: TaskEvent, isMobile: boolean = false): any {
   });
   const action =
     event.state === 'accepted'
-      ? 'accepted the task'
+      ? isMobile
+        ? 'accepted the task'
+        : 'has accepted the task'
       : event.state === 'resting'
         ? 'is resting'
-        : 'completed the task';
+        : isMobile
+          ? 'completed the task'
+          : 'has completed the task';
 
   return (
     <p>
       {`${time}`}
-      <span className=" feed-line-spacing"></span>{' '}
-      {`A human${getUpdatedLocation(location)} ${action}.`}
+      <span className=" feed-line-spacing"></span> {`A human${location} ${action}.`}
     </p>
   );
 }
 
 export default function LiveFeed({ apiUrl, pageSize, className }: LiveFeedProps) {
-  const isMobile = pageSize !== undefined;
+  const isMobile = useMediaQuery({ maxWidth: 768 });
   const limit = pageSize ?? 50;
 
   const ably = useAbly();
