@@ -9,7 +9,7 @@ export default function ViewportCursors() {
   const { space } = useSpace();
   const [cursors, setCursors] = useState<Record<string, CursorUpdate>>({});
   const isMobile = useMediaQuery({ maxWidth: 768 });
-  const cursorSize = isMobile ? 56 : 84;
+  const cursorSize = isMobile ? 64 : 84;
 
   useEffect(() => {
     if (!space) return;
