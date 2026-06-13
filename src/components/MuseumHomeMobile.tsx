@@ -102,7 +102,18 @@ export default function MuseumHomeMobile() {
         </span>
       </div>
 
-      <p className="mhm-hero-text">{HERO_TEXT}</p>
+      <p className="mhm-hero-text">
+        Microrest is a website where you pay microworkers to rest.{'\n\n'}
+        <i>Microworkers</i> are the anonymous, remote online workers who train AI systems, moderate
+        content, and translate text — the human labour that makes "automated" platforms work. They
+        work for pennies, eyes fixed on the screen and wrists constantly moving — training the same
+        AI systems that will eventually replace them.{'\n\n'}
+        For 25 cents, you can pay a worker to rest for 10 minutes. This fee is at the top end of
+        what these workers are usually paid for their labour — to relentlessly click, select, drag.
+        {'\n\n'}
+        To rest, workers simply leave their cursor on the screen and do nothing. No proof of rest is
+        required.
+      </p>
       <p className="mhm-donate-cta">
         <a href="/donate" target="_blank">
           DONATE
