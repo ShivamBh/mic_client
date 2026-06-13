@@ -1,19 +1,12 @@
 import '../museum.css';
 import HomeUI from './HomeUI';
-import { useCallback, useEffect, useRef, useState } from 'react';
-
-const API_URL = import.meta.env.VITE_API_URL as string;
+import { useEffect, useRef } from 'react';
 
 const SCROLL_SPEED = 0.53;
 const EASE_FACTOR = 0.1;
 
 function MuseumHome() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [restData, setRestData] = useState({
-    count: 0,
-    duration: 0,
-  });
-
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -51,21 +44,10 @@ function MuseumHome() {
     };
   }, []);
 
-  const fetchRestData = useCallback(async () => {
-    const res = await fetch(`${API_URL}/api/rest-stats`);
-    if (!res.ok) return;
-    const data: { count: number; duration: number } = await res.json();
-    setRestData(data);
-  }, []);
-
-  useEffect(() => {
-    fetchRestData();
-  }, []);
-
   return (
     <>
       <div className="home-container" ref={containerRef}>
-        <HomeUI restData={restData} onMemberChange={fetchRestData} />
+        <HomeUI />
         {/* <HomeContent restData={restData}/> */}
       </div>
     </>

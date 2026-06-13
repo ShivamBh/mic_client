@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 // import { useCursors } from "@ably/spaces/dist/mjs/react";
 import CursorSvg from './Cursor';
 import { motion } from 'framer-motion';
 import '../styles/ui.css';
 import { Realtime } from 'ably';
+import type * as Ably from 'ably';
 import { nanoid } from 'nanoid';
 import Spaces, { CursorUpdate, Members, SpaceMember } from '@ably/spaces';
 import PictureBox from './PictureBox';
@@ -50,12 +51,12 @@ const client = new Realtime({
 
 const spaces = new Spaces(client);
 
+const API_URL = import.meta.env.VITE_API_URL as string;
+
 function HomeUI({
-  onMemberChange,
-  restData,
+  onMemberChange = () => {},
 }: {
-  onMemberChange: () => void;
-  restData: { count: number; duration: number };
+  onMemberChange?: () => void;
 }) {
   const { cursors } = useCursors({ returnCursors: true });
 
@@ -72,6 +73,10 @@ function HomeUI({
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' });
   const [workers, setWorkers] = useState([]);
   const [workerCount, setWorkerCount] = useState(0);
+  const [totalSecs, setTotalSecs] = useState(0);
+  const [completedCount, setCompletedCount] = useState(0);
+  const [restingCount, setRestingCount] = useState(0);
+  const restingCountRef = useRef(0);
 
   const removeMemberFromStoredCursors = (memberId: string) => {
     const cursorStates = JSON.parse(localStorage.getItem('microrest_cursor_states'));
@@ -151,9 +156,48 @@ function HomeUI({
   }, [workerCount]);
 
   useEffect(() => {
-    console.log(`restDATA`, restData);
     initSpace();
   }, []);
+
+  // Seed timer state from server on mount
+  useEffect(() => {
+    fetch(`${API_URL}/api/timer/state`)
+      .then((r) => r.json())
+      .then((data) => {
+        setTotalSecs(data.totalSeconds ?? 0);
+        setCompletedCount(data.totalRestingWorkers ?? 0);
+        const initial = data.activeRestingWorkers ?? 0;
+        setRestingCount(initial);
+        restingCountRef.current = initial;
+      })
+      .catch(() => {});
+  }, []);
+
+  // Track active resting workers and accumulate duration via Ably events
+  useEffect(() => {
+    const channel = client.channels.get('microrest');
+    const handler = (msg: Ably.Message) => {
+      const event = msg.data as { state?: string };
+      if (event?.state === 'resting') {
+        restingCountRef.current += 1;
+        setRestingCount(restingCountRef.current);
+      } else if (event?.state === 'completed') {
+        restingCountRef.current = Math.max(0, restingCountRef.current - 1);
+        setRestingCount(restingCountRef.current);
+      }
+    };
+    channel.subscribe('task_event', handler);
+    return () => {
+      channel.unsubscribe('task_event', handler);
+    };
+  }, []);
+
+  // Count up totalSecs once per second while any worker is resting
+  useEffect(() => {
+    if (restingCount === 0) return;
+    const id = setInterval(() => setTotalSecs((s) => s + 1), 1000);
+    return () => clearInterval(id);
+  }, [restingCount]);
 
   return (
     <>
@@ -239,9 +283,9 @@ function HomeUI({
         <div className="feed-col">
           <div className="rest-stats">
             <p>
-              {restData.count} workers have stopped training AI for{' '}
-              {restData.duration > 0
-                ? convertSeconds(restData.duration)
+              {completedCount} workers have stopped training AI for{' '}
+              {totalSecs > 0
+                ? convertSeconds(totalSecs)
                 : '0 days, 0 hours and 0 seconds'}
             </p>
             <p className="feed-heading">Log Data</p>
