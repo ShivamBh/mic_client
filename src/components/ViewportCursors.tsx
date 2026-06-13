@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useSpace } from '@ably/spaces/dist/mjs/react';
 import type { CursorUpdate, SpaceMember } from '@ably/spaces';
 import { useMediaQuery } from 'react-responsive';
-import cursorWhiteBg from '../assets/cursor/cursor_whitebg.svg';
+import cursorWhiteBg from '../assets/cursor_whitebg_smaller.svg';
 
 export default function ViewportCursors() {
   const { space } = useSpace();
