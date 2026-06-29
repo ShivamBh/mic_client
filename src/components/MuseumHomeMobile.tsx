@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { useAbly } from 'ably/react';
-import type * as Ably from 'ably';
 import ViewportCursors from './ViewportCursors';
 import LiveFeed from './LiveFeed';
 import DonatePage from './DonateHome';
@@ -42,40 +41,70 @@ export default function MuseumHomeMobile() {
     return () => observer.disconnect();
   }, []);
 
+  // Sync timer state from the server (source of truth) on mount and periodically.
+  // totalSeconds already accumulates proportionally server-side (sum of active
+  // sessions), so re-syncing keeps the museum authoritative and corrects drift.
   useEffect(() => {
-    fetch(`${API_URL}/api/timer/state`)
-      .then((r) => r.json())
-      .then((data) => {
-        setTotalSecs(data.totalSeconds ?? 0);
-        setCompletedCount(data.totalRestingWorkers ?? 0);
-        const initial = data.activeRestingWorkers ?? 0;
-        setRestingCount(initial);
-        restingCountRef.current = initial;
-      })
-      .catch(() => {});
+    const syncTimerState = () => {
+      fetch(`${API_URL}/api/timer/state`)
+        .then((r) => r.json())
+        .then((data) => {
+          // totalSecs and completedCount are owned by the server sync;
+          // restingCount is owned by the live presence listener below.
+          setTotalSecs(data.totalSeconds ?? 0);
+          setCompletedCount(data.totalRestingWorkers ?? 0);
+        })
+        .catch(() => {});
+    };
+    syncTimerState();
+    const id = setInterval(syncTimerState, 20000);
+    return () => clearInterval(id);
   }, []);
 
+  // Live resting count from Ably presence — the same source of truth the server
+  // uses (timer-service handlePresenceChange). Workers publish state via presence
+  // (resting / idle on move / leave on disconnect), so this drops the instant a
+  // worker stops resting, unlike the old task_event stream which only decremented
+  // on 'completed'. Count distinct workerIds to avoid double-counting a reloaded
+  // worker whose stale presence member lingers until cleanup.
   useEffect(() => {
     const channel = ably.channels.get('microrest');
-    const handler = (msg: Ably.InboundMessage) => {
-      const event = msg.data as { state?: string };
-      if (event?.state === 'resting') {
-        restingCountRef.current += 1;
-        setRestingCount(restingCountRef.current);
-      } else if (event?.state === 'completed') {
-        restingCountRef.current = Math.max(0, restingCountRef.current - 1);
-        setRestingCount(restingCountRef.current);
+    let cancelled = false;
+
+    const recount = async () => {
+      try {
+        const members = await channel.presence.get();
+        const resting = new Set(
+          members
+            .map((m) => m.data as { state?: string; workerId?: string } | undefined)
+            .filter((d) => d?.state === 'resting' && d?.workerId)
+            .map((d) => d!.workerId as string)
+        );
+        if (cancelled) return;
+        restingCountRef.current = resting.size;
+        setRestingCount(resting.size);
+      } catch {
+        /* ignore transient presence errors */
       }
     };
-    channel.subscribe('task_event', handler);
+
+    recount();
+    channel.presence.subscribe(['enter', 'update', 'leave'], recount);
     return () => {
-      channel.unsubscribe('task_event', handler);
+      cancelled = true;
+      channel.presence.unsubscribe(recount);
     };
   }, [ably]);
 
+  // Interpolate totalSecs between server syncs at one tick per resting worker per
+  // second: N workers -> N updates/sec -> total climbs ~N sec/sec. Period floored
+  // at 50ms (<=20 updates/sec) to avoid render thrash at high counts, with a
+  // compensating step so the accumulation rate stays ~= restingCount/sec.
   useEffect(() => {
-    if (restingCount === 0) return;
-    const id = setInterval(() => setTotalSecs((s) => s + 1), 1000);
+    if (restingCount <= 0) return;
+    const period = Math.max(Math.floor(1000 / restingCount), 50);
+    const step = Math.max(1, Math.round((restingCount * period) / 1000));
+    const id = setInterval(() => setTotalSecs((s) => s + step), period);
     return () => clearInterval(id);
   }, [restingCount]);
 
