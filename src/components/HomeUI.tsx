@@ -75,6 +75,11 @@ function HomeUI({
   const [totalSecs, setTotalSecs] = useState(0);
   const [completedCount, setCompletedCount] = useState(0);
   const [restingCount, setRestingCount] = useState(0);
+  // Connected & active workers: every distinct workerId present in `microrest`
+  // presence (accepted + resting + idle), i.e. everyone who started the task and
+  // hasn't completed/disconnected. Drives the header counter. restingCount (only
+  // those whose cursor is currently still) stays the timer's accrual source.
+  const [activeCount, setActiveCount] = useState(0);
   const restingCountRef = useRef(0);
 
   const removeMemberFromStoredCursors = (memberId: string) => {
@@ -191,15 +196,23 @@ function HomeUI({
     const recount = async () => {
       try {
         const members = await channel.presence.get();
+        const data = members.map(
+          (m) => m.data as { state?: string; workerId?: string } | undefined
+        );
+        // All connected & active workers (any presence state) — header counter.
+        const active = new Set(
+          data.filter((d) => d?.workerId).map((d) => d!.workerId as string)
+        );
+        // Currently-resting subset — feeds the timer accrual only.
         const resting = new Set(
-          members
-            .map((m) => m.data as { state?: string; workerId?: string } | undefined)
+          data
             .filter((d) => d?.state === 'resting' && d?.workerId)
             .map((d) => d!.workerId as string)
         );
         if (cancelled) return;
         restingCountRef.current = resting.size;
         setRestingCount(resting.size);
+        setActiveCount(active.size);
       } catch {
         /* ignore transient presence errors */
       }
@@ -234,7 +247,7 @@ function HomeUI({
       <div className="site-header">
         {/* <div className="site-name">MICROREST</div> */}
         <div className="site-stats">
-          {restingCount} worker{restingCount != 1 ? 's' : ''} resting
+          {activeCount} worker{activeCount != 1 ? 's' : ''} resting
         </div>
         {/* <div className="spacer-r">{" "}</div> */}
       </div>
