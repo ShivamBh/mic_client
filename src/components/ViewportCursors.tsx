@@ -19,7 +19,7 @@ export default function ViewportCursors() {
       .then((initial) => {
         setCursors((prev) => ({ ...prev, ...initial }));
       })
-      .catch(() => {});
+      .catch((err) => console.warn('[ViewportCursors] cursors.getAll failed:', err));
 
     const cursorHandler = (update: CursorUpdate) => {
       setCursors((prev) => ({ ...prev, [update.connectionId]: update }));
