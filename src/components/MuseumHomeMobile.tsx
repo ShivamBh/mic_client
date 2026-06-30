@@ -83,9 +83,7 @@ export default function MuseumHomeMobile() {
           (m) => m.data as { state?: string; workerId?: string } | undefined
         );
         // All connected & active workers (any presence state) — header counter.
-        const active = new Set(
-          data.filter((d) => d?.workerId).map((d) => d!.workerId as string)
-        );
+        const active = new Set(data.filter((d) => d?.workerId).map((d) => d!.workerId as string));
         // Currently-resting subset — feeds the timer accrual only.
         const resting = new Set(
           data
