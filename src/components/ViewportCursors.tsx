@@ -3,13 +3,15 @@ import { motion } from 'framer-motion';
 import { useSpace } from '@ably/spaces/dist/mjs/react';
 import type { CursorUpdate, SpaceMember } from '@ably/spaces';
 import { useMediaQuery } from 'react-responsive';
-import cursorWhiteBg from '../assets/cursor_whitebg_smaller.svg';
+import cursorWhiteBgDesktop from '../assets/cursor_whitebg_desktop.svg';
+import cursorWhiteBgMobile from '../assets/cursor_whitebg_mobile.svg';
 
 export default function ViewportCursors() {
   const { space } = useSpace();
   const [cursors, setCursors] = useState<Record<string, CursorUpdate>>({});
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const cursorSize = isMobile ? 74 : 84;
+  const cursorSrc = isMobile ? cursorWhiteBgMobile : cursorWhiteBgDesktop;
 
   useEffect(() => {
     if (!space) return;
@@ -59,7 +61,7 @@ export default function ViewportCursors() {
       {active.map((cursor) => (
         <motion.img
           key={cursor.connectionId}
-          src={cursorWhiteBg}
+          src={cursorSrc}
           alt=""
           width={cursorSize}
           height={cursorSize}

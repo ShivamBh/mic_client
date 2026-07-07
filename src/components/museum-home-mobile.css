@@ -76,7 +76,7 @@
 .mhm-pill-row {
   position: sticky;
   top: 6px;
-  z-index: 20;
+  z-index: 200;
   height: 64px;
   padding: 12px 16px;
   display: flex;
