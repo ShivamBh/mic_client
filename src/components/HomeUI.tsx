@@ -52,11 +52,7 @@ const spaces = new Spaces(client);
 
 const API_URL = import.meta.env.VITE_API_URL as string;
 
-function HomeUI({
-  onMemberChange = () => {},
-}: {
-  onMemberChange?: () => void;
-}) {
+function HomeUI({ onMemberChange = () => {} }: { onMemberChange?: () => void }) {
   const { cursors } = useCursors({ returnCursors: true });
 
   const [cursorStates, setCursorStates] = useState<
@@ -200,9 +196,7 @@ function HomeUI({
           (m) => m.data as { state?: string; workerId?: string } | undefined
         );
         // All connected & active workers (any presence state) — header counter.
-        const active = new Set(
-          data.filter((d) => d?.workerId).map((d) => d!.workerId as string)
-        );
+        const active = new Set(data.filter((d) => d?.workerId).map((d) => d!.workerId as string));
         // Currently-resting subset — feeds the timer accrual only.
         const resting = new Set(
           data
@@ -280,18 +274,7 @@ function HomeUI({
               <img src={DownArrow} alt="Scroll Icon" />
             </div>
           </section>
-          <section className="hand-animation">
-            <img className="hand-anim" src={HandAnimPic} alt="hand anim" />
-            {/* <video
-              src={HandAnim}
-              autoPlay
-              loop
-              aria-label="hand animation loop"
-              height={200}
-              width={200}
-            ></video> */}
-            <img className="down-arrow" src={DownArrow} alt="" />
-          </section>
+
           <section className="donation">
             <div className="donate-heading">
               <h2>Donate</h2>
@@ -318,14 +301,24 @@ function HomeUI({
               </i>
             </div>
           </section>
+          <section className="hand-animation">
+            <img className="hand-anim" src={HandAnimPic} alt="hand anim" />
+            {/* <video
+              src={HandAnim}
+              autoPlay
+              loop
+              aria-label="hand animation loop"
+              height={200}
+              width={200}
+            ></video> */}
+            {/* <img className="down-arrow" src={DownArrow} alt="" /> */}
+          </section>
         </div>
         <div className="feed-col">
           <div className="rest-stats">
             <p>
               {completedCount} workers have stopped training AI for{' '}
-              {totalSecs > 0
-                ? convertSeconds(totalSecs)
-                : '0 days, 0 hours and 0 seconds'}
+              {totalSecs > 0 ? convertSeconds(totalSecs) : '0 days, 0 hours and 0 seconds'}
             </p>
             <p className="feed-heading">Log Data</p>
           </div>
