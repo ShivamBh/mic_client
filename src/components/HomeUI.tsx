@@ -276,6 +276,8 @@ function HomeUI({ onMemberChange = () => {} }: { onMemberChange?: () => void }) 
           </section>
 
           <section className="donation">
+            <img className="down-arrow down-arrow-donation" src={DownArrow} alt="" />
+
             <div className="donate-heading">
               <h2>Donate</h2>
             </div>
@@ -311,7 +313,6 @@ function HomeUI({ onMemberChange = () => {} }: { onMemberChange?: () => void }) 
               height={200}
               width={200}
             ></video> */}
-            {/* <img className="down-arrow" src={DownArrow} alt="" /> */}
           </section>
         </div>
         <div className="feed-col">

@@ -91,7 +91,11 @@
 
 .donation {
   font-size: 19px;
-  padding-top: 50vh;
+  padding-top: 150vh;
+}
+
+.down-arrow-donation {
+  padding-bottom: 150vh;
 }
 
 .donate-heading h2 {
